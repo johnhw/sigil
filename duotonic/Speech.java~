@@ -1,0 +1,917 @@
+package duotonic;
+import java.io.*;
+import sigil.Library;
+import javax.sound.sampled.*;
+import java.util.*;
+import java.net.URL;
+
+/**
+ * Speech syntehsizer, using concatenative phonemes and including simple
+ * signal processing. Uses smoothed concatenative phonemes to produce speech
+ * optionally after converting from english, and can apply delay and pitch shifting
+ * effects. Instances of this class represent "speakers" with parameters relating
+ * to the production of speech.
+ *
+ * @author John Williamson
+ */
+public class Speech implements Serializable
+{
+    //Static variables
+    public static final String phonemePath = "allophones"; //Path to load phonemes from
+    public static String [] phonemes;       //The names of all the phonemes
+    private static byte [] [] phonemeCache; //The cached sample of phonemes
+    private static int fadePercent = 10;    //Percentage fading applied to ends of phonemes
+    private static int samplesPerMs = 44;    //Samples per millisecond
+
+    //Formats for 44.1khz 16bit linear PCM mono and stereo audio, respectively
+    private static AudioFormat phonemeForm, stereoForm; 
+    
+    //Variables for individual instances
+    private int echoDelay = 0;         //Delay in samples
+    private double delayMix = 0.0;     //Mixing factor for delay (0.0-1.0)
+    private double pitch = 1.0;        //Pitch adjustment factor 
+    private double flangeAmt = 0.0;    //Flanging amount (0.0-100.0)
+    private double delayFilter = 0.0;  //Delay filtering (dampening) (0.0-1.0)
+    private double filter = 0.0;       //Low-pass filtration amount (0.0-1.0)
+    private double volume = 1.0;       //Volume (0.0-1.0)
+    private double pan = 0.5;          //Panning (0.0=left 0.5=center 1.0=right)
+
+        
+    //State of currently processed audio
+    //This must be global to avoid clicking at phoneme boundaries when rendering speech
+    private int oldValL=0, oldValR = 0; //Previous values for left and right channel 
+    private int oldDelR=0, oldDelL = 0; //Previous delay values for left and right channel
+    
+    /**
+     * Return the length of a cached phoneme, given a
+     * phoneme index
+     */
+    public static int getCacheLen(int index)
+    {
+	return phonemeCache[index].length;
+    }
+    
+    /**
+     * Take a sample, and a integer percentage, and
+     * fade the ends of the sample linearly. The fades
+     * have length fadeP% of the sample 
+     */
+    public static void fade(byte [] phoneme, int fadeP)
+    {
+	int len = phoneme.length;
+	
+	//Calcuate start and end points of fades
+	int fadeInEnd = (int)(((double)len*((double)fadeP/100.0)));
+	int fadeOutStart = (int)(len-((double)len*((double)fadeP/100.0)));
+
+	//Ensure that the fade out starts on a word boundary
+	//to avoid horrible byte misalignment errors
+	if(fadeOutStart%2!=0)
+	    fadeOutStart++;
+
+	//Do the fade in
+	for(int i=0;i<fadeInEnd;i+=2)
+	    {
+		//Get the next sample
+		int sampleVal = phoneme[i]+(phoneme[i+1]<<8);
+		if(sampleVal>32767)  //Correct sign
+		    sampleVal -= 65536;
+
+		//Fade it
+		int fadedVal = (int)((double)sampleVal*((double)i/(double)fadeInEnd));
+
+		//Put it back
+		phoneme[i] = (byte)(fadedVal & 255);
+		phoneme[i+1] = (byte)((fadedVal>>8) & 255);
+	    }
+
+	//Do the fade out
+	for(int i=fadeOutStart;i<len;i+=2)
+	    {
+		//Get next sample
+		int sampleVal = phoneme[i]+(phoneme[i+1]<<8);
+		if(sampleVal>32767)  //Correct sign
+		    sampleVal -= 65536;
+		
+		//Fade it
+		int fadedVal = (int)((double)sampleVal*(1.0-((double)(i-fadeOutStart)/(double)fadeInEnd)));
+
+		//Put it back
+		phoneme[i] = (byte)(fadedVal & 255); 
+		phoneme[i+1] = (byte)((fadedVal>>8) & 255);
+	    }
+    }
+
+    /**
+     * Takes a sample as a buffer of bytes (must be 16bit 44.1khz mono PCM)
+     * and plays it. Blocks until sample has finished if wait is true
+     * otherwise returns immediately
+     */
+    public static void playCachedSample(byte [] sample, boolean wait)
+    {
+	if(sample!=null)
+	    {
+		try{
+		    //Get an audioclip
+		    DataLine.Info clipInfo = new DataLine.Info(Clip.class, phonemeForm);
+		    Clip thisClip = (Clip)(AudioSystem.getLine(clipInfo));
+		    
+		    //Open it in the mono 16bit 44.14khz format
+		    thisClip.open(phonemeForm, sample, 0, sample.length/2);
+
+		    //Start it and wait if required
+		    thisClip.start();
+		    if(wait)
+			{
+                            long dur = thisClip.getFrameLength()/samplesPerMs;
+			    Thread.sleep(dur);
+			}
+		}
+		catch(Exception E) {E.printStackTrace();}
+	    }
+    }
+
+
+    /**
+     * Takes a sample as a buffer of bytes (must be 16bit 44.1khz mono PCM)
+     * and loops it for the given duration. If wait then blocks
+     * otherwise returns immediately
+     */
+    public static void loopCachedSample(final byte [] sample, final long dur, final boolean wait)
+    {
+	Thread runThread = new Thread()
+	{
+	    public void run()
+	    {
+		if(sample!=null)
+		    {
+			try{
+			    //Get an audioclip
+			    DataLine.Info clipInfo = new DataLine.Info(Clip.class, phonemeForm);
+			    Clip thisClip = (Clip)(AudioSystem.getLine(clipInfo));
+			    
+			    //Open it in the mono 16bit 44.14khz format
+			    thisClip.open(phonemeForm, sample, 0, sample.length/2);
+			    
+			    //Start it and wait if required
+			    thisClip.loop(Clip.LOOP_CONTINUOUSLY);
+			    Thread.sleep(dur);
+			    thisClip.stop();
+			}
+			catch(Exception E) {E.printStackTrace();}
+		    }
+	
+	    }
+	};
+	runThread.start();
+	if(wait)
+	    
+	    try{runThread.join();}catch(InterruptedException ie) {}
+    }
+    
+    /**
+     * Takes a sample as a buffer of bytes (must be 16bit 44.1khz mono PCM)
+     * and plays it from the start until duration samples.
+     * Blocks until sample has finished if wait is true
+     * otherwise returns immediately.
+     */
+    public static void playCachedSample(byte [] sample, int duration, boolean wait)
+    {
+	if(sample!=null)
+	    {
+		try{
+		    //Get a clip
+		    DataLine.Info clipInfo = new DataLine.Info(Clip.class, phonemeForm);
+		    Clip thisClip = (Clip)(AudioSystem.getLine(clipInfo));
+
+		    //Calcuate the actual byte length
+		    duration*=2;
+		    if(duration>sample.length/2)
+			duration = sample.length/2;
+		    
+		    //Open and start the clip, blocking as required
+		    thisClip.open(phonemeForm, sample, 0, duration);
+		    thisClip.start();
+		    long startTime = System.currentTimeMillis();
+		    if(wait)
+			{
+                            long dur = thisClip.getFrameLength()/samplesPerMs;
+			    Thread.sleep(dur-50);
+			}
+		}
+		catch(Exception E) {E.printStackTrace();}
+	    }
+    }
+    
+
+    /**
+     * Returns a byte array containing sample data loaded from the
+     * given filename. Always loads from the system JAR file; 
+     * e.g sigil.jar!/lib/sound.wav. Returns null if the file
+     * is not of the appropriate format.
+     */
+    public static byte [] cacheSample(String filename)
+    {
+
+	try{
+	    //Get the actual file format
+	  URL openFile = Library.getURL(filename);
+	  AudioFormat audioForm = AudioSystem.getAudioFileFormat(openFile).getFormat();
+	  
+	  //Check it matches
+	  if(!audioForm.matches(phonemeForm))
+	      return null;
+
+	  //Get the audio stream
+	  AudioInputStream iStream = AudioSystem.getAudioInputStream(openFile);
+	  int maxLen = 2000000;
+	  byte [] wavTemp = new byte[maxLen];
+	  int bytesRead, curPos = 0;
+
+	  //Read the data
+	  do
+	      {
+		  bytesRead = iStream.read(wavTemp, curPos, maxLen-curPos);
+		  curPos+=bytesRead;
+	      } while(bytesRead>0 && curPos<maxLen);
+
+	  //Copy out the required data into a new buffer of exactly the right size
+	  byte [] retVal = new byte[curPos+1];
+	  System.arraycopy(wavTemp, 0, retVal, 0, curPos);
+
+	  return retVal;
+	} catch(Exception E) { return null; }
+    }
+
+
+    /**
+     * Load the phoneme with the given name, and store it in
+     * the phoneme cache at the specified index. Phonemes
+     * must be stored in the system jar file
+     */
+    private static void cachePhoneme(String fileName, int index)
+    {
+	try{
+
+	    //Get the audioformat
+            URL openFile = Library.getURL(phonemePath+"/"+fileName.toUpperCase()+".WAV");  
+	    AudioFormat audioForm = AudioSystem.getAudioFileFormat(openFile).getFormat();
+
+	    //If this is the first file opened, update the format
+	    if(phonemeForm==null)
+            {
+		phonemeForm = audioForm;
+                samplesPerMs = (int)(audioForm.getFrameRate()/1000);
+            }
+	    AudioInputStream iStream = AudioSystem.getAudioInputStream(openFile);
+	    
+	    //Read the data
+	    int maxLen = 200000;
+	    byte [] phonemeTemp = new byte[maxLen];
+	    int bytesRead, curPos = 0;
+	    do
+		{
+		    bytesRead = iStream.read(phonemeTemp, curPos, maxLen-curPos);
+		    curPos+=bytesRead;
+		} while(bytesRead>0);
+
+	    
+	    //Copy the actual data into the correctly sized entry
+	    phonemeCache[index] = new byte[curPos+1];
+	    System.arraycopy(phonemeTemp, 0, phonemeCache[index], 0, curPos);
+
+	    //Fade the start and end points of the sample for smooth sound
+	    fade(phonemeCache[index], fadePercent);
+	}catch(Exception E) {E.printStackTrace();}
+    }
+    
+    /**
+     * Initializes the phoneme cache data
+     */
+    static
+    {        
+	//Read the list of phonemes
+	Vector phonemeVector = new Vector();
+	try{
+	    BufferedReader phonemeListReader = Library.getReader("phoneme.lst");
+	    String inLine = phonemeListReader.readLine();
+	    while(inLine!=null)
+		{
+                    phonemeVector.add(inLine.toLowerCase());
+		    inLine = phonemeListReader.readLine();
+		}
+	    phonemeListReader.close();
+	} catch(IOException ioe)
+	    {
+		System.err.println("Warning: Phonemes not available");
+	    }
+	
+	//Store the phoneme names
+	phonemes = new String[phonemeVector.size()];
+	for(int i=0;i<phonemes.length;i++)
+	    phonemes[i] = (String)(phonemeVector.get(i));
+
+	phonemeCache = new byte[phonemes.length][]; 		
+	sortPhonemes();
+
+	//Cache each of the phonemes
+	for(int i=0;i<phonemes.length;i++)
+	    cachePhoneme(phonemes[i], i);
+
+	//Create the stereo format (same as phoneme format, but with two channels)
+	stereoForm = new AudioFormat(phonemeForm.getSampleRate(),
+				     phonemeForm.getSampleSizeInBits(),
+				     2,
+				     true,
+				     phonemeForm.isBigEndian());				     
+    }
+    
+    /**
+     * Sort the phonemes in ascending alphabetical order
+     */
+    private static void sortPhonemes()
+    {
+	Arrays.sort(phonemes);
+    }
+
+    /**
+     * Play a sample with the given filename. Block until
+     * sample has played if wait is true
+     */
+    public static void playSample(final String name, boolean wait)
+    {
+	try{
+	    //Open the file and get a clip
+	    File openFile = new File(name);  
+	    AudioFormat audioForm = AudioSystem.getAudioFileFormat(openFile).getFormat();
+	    DataLine.Info clipInfo = new DataLine.Info(Clip.class, audioForm);
+	    Clip thisClip = (Clip)(AudioSystem.getLine(clipInfo));
+
+	    //Play the sample
+	    thisClip.open(AudioSystem.getAudioInputStream(openFile));
+	    thisClip.start();
+
+	    //Block as required
+	    if(wait)
+		{
+                    long dur = thisClip.getFrameLength()/samplesPerMs;
+		    Thread.sleep(dur);
+		}
+	}catch(Exception E) {E.printStackTrace();}
+    }
+    
+    /**
+     * Take  a string of english, convert it to phonemes
+     * and then pass the phonemes to the sythesizer to say it.
+     * If wait is true then blocks until speech is complete
+     */
+    public void textToSpeech(String text, boolean wait)
+    {
+	String tts = TextPhoneme.textToPhonemes(text);
+	say(tts, wait);
+    }
+    
+    /**
+     * As the two argument form, but default to waiting
+     */
+    public void textToSpeech(String text)
+    {
+	String tts = TextPhoneme.textToPhonemes(text);
+	say(tts); 
+    }
+    
+    /**
+     * Appends a new sample to a buffer. Requires the buffer, the phoneme to append
+     * the current position within the buffer, a pitch value, a delay value (in samples)
+     * a delay mix factor, a flanging factor, a delay filtering factor, a volume
+     * and a pan position 
+     */
+    private int append(byte [] buffer, byte [] phoneme, int curPos, double ptch, int delay, 
+		       double delFac, double flangeAmt, double delFilt, double volume, 
+		       double panning)
+    {
+	
+	//Limit pitch to sensible values
+	if(ptch<0.5) ptch=0.5;
+	if(ptch>2.0) ptch=2.0;
+
+	//Limit the delay filter
+	delFilt = 1.0-delFilt;
+	if(delFilt>1.0 || delFilt<-1.0)
+	    delFilt = 1.0;
+
+	//Limit the flanging
+	flangeAmt/=100.0;
+	if(flangeAmt>0.5)
+	    flangeAmt = 0.5;
+
+	
+	//Calculate insertions and deletions of samples to 
+	//cause pitch changes
+	boolean insert;
+	int recip; //The number of samples after which to remove or add a sample
+	if(ptch>1.0)
+	    {
+		//Need to repeat some samples
+		recip = (int)(1.0/(1.0-ptch));
+		insert = true;
+	    }
+	else
+	    {
+		//Need to delete some samples
+		recip = (int)(1.0/(ptch-1.0));
+		insert = false;
+	    }
+
+	//Calculate when to skip additional samples if flanging
+	int delRecip = (int)(1.0/flangeAmt);
+
+	//Set the current position
+	int cPos = curPos;
+
+	//Set the position of the delay tap
+	int delPos = cPos - delay*4;
+	
+	for(int i=0;i<phoneme.length;i+=2)
+	    {
+		int resR, resL;
+		cPos+=4;
+		
+		//Skip sample in delay if required
+		if(i%delRecip!=0)
+		    delPos+=4;
+
+		//Get the value from the phoneme to be appended
+		int k = phoneme[i]+(phoneme[i+1]<<8);
+		if(k>32767)
+		    k=k-65536;
+
+		//Get the current value (this allows for cross-fading)
+		int rl = buffer[cPos]+(buffer[cPos+1]<<8);
+		if(rl>32767)
+		    rl=rl-65536;
+
+		int rr = buffer[cPos+2]+(buffer[cPos+3]<<8);
+		if(rr>32767)
+		    rr=rr-65536;
+		
+		//If delaying
+		if(delPos>0 && delay>10 && delFac<1.0)
+		    {
+			//Calculate left delay
+			int orl = buffer[delPos]+(buffer[delPos+1]<<8);
+			if(orl>32767)
+			    orl=orl-65536;
+
+			//Filter delay
+			orl = (int)((1-delFilt)*oldDelL+delFilt*orl);
+
+			//Add to the signal
+			rl+=orl*delFac;
+			oldDelL = orl;
+			
+			//Calculate right delay
+			int orr = buffer[delPos+2]+(buffer[delPos+3]<<8);
+			if(orr>32767)
+			    orr=orr-65536;
+			
+			//Filter
+			orr = (int)((1-delFilt)*oldDelR+delFilt*orr);
+			rr+=orr*delFac;
+			oldDelR = orr;
+		    }
+
+		//Calculate the new signal, summing with the original
+		//signal, and filtering
+		resL = (int)(filter*oldValL+(1-Math.abs(filter))*(k+rl));
+		resL = (int)(resL*volume*(1.0-pan));
+		resR = (int)(filter*oldValR+(1-Math.abs(filter))*(k+rr));
+		resR = (int)(resR*volume*pan);
+		
+		//Limit the results to avoid clipping
+		if(resL>32767) resL = 32767;
+		if(resL<-32767) resL = -32767;
+		if(resR>32767) resR = 32767;
+		if(resR<-32767) resR = -32767;
+		 		
+		//Insert an additional sample if the pitch is
+		//being decreased
+		if(insert && i%recip==0)
+		    {
+			cPos-=4;
+			delPos-=4;
+			continue;
+		    }		
+		else if(!insert && i%recip==0)
+		    {
+			//Remove a sample if pitch is being increased
+			buffer[cPos] = (byte)(resL & 255);
+			buffer[cPos+1] = (byte)((resL >>8) & 255);
+			buffer[cPos+2] = (byte)(resR & 255);
+			buffer[cPos+3] = (byte)((resR >>8) & 255);
+			cPos+=4;
+			delPos+=4;
+		    }
+
+		//Put the new calculated value into the buffer
+		buffer[cPos] = (byte)(resL & 255);
+		buffer[cPos+1] = (byte)((resL>>8) & 255);
+		buffer[cPos+2] = (byte)(resR & 255);
+		buffer[cPos+3] = (byte)((resR>>8) & 255);
+		oldValL = resL;
+		oldValR = resR;
+	    }
+	return cPos;
+    }
+    
+
+    /**
+     * Takes a string of slash separated phonemes, and buffers in which 
+     * to write the phoneme indices, the pitch values and the volume 
+     * for each phoneme in the string. 
+     * Returns the size of the buffer required to hold the phoneme and the 
+     * number of phonemes in the string.
+     * Control codes can be presented after
+     * the phoneme but before the slash to change pitch and volume. Codes are:
+     * <br> @ reset pitch
+     * <br> = reset volume
+     * <br> > pitch up
+     * <br> < pitch down
+     * <br> + volume up
+     * <br> - volume down
+     */
+    private BufferInfo constructPhones(String toSay, int [] phons, int [] pitches, 
+				       int [] vols)
+    {
+       
+	StringTokenizer tok = new StringTokenizer(toSay, "/", false);
+	int bufferSize = 0;
+	int maxPhons = 0;
+	int curPitch = 0;
+	int curVol = 0;
+
+	while(tok.hasMoreTokens())
+	    {
+		String newToken = tok.nextToken();
+		
+		//Parse special symbols
+		if(newToken.indexOf("@")>=0)
+		    curPitch=0;
+		
+		if(newToken.indexOf(">")>=0)
+		    curPitch+=1;
+		
+		if(newToken.indexOf("<")>=0)
+		    curPitch-=1;
+		
+		if(newToken.indexOf("=")>=0)
+		    curVol=0;
+		
+		if(newToken.indexOf("-")>=0)
+		    curVol-=1;
+		
+		if(newToken.indexOf("+")>=0)
+		    curVol+=1;
+		
+		pitches[maxPhons] = curPitch;
+		vols[maxPhons] = curVol;
+		String phon= "";
+
+		//Append all of the actual phoneme excluding codes
+		//to a new string
+		for(int i=0;i<newToken.length();i++)
+		    {
+			char c = newToken.charAt(i);
+			if(Character.isLetterOrDigit(c))
+			    phon+=c;
+		    }
+		
+		boolean foundPhoneme = false;
+
+		//Search for a matching phoneme in the phoneme table
+		for(int i=0;i<phonemes.length;i++)
+		    if(phonemes[i].equals(phon))
+			{
+			    //Increase buffer size as required
+			    bufferSize+=(phonemeCache[i].length*4);
+			    phons[maxPhons] = i;
+			    maxPhons++;
+			    foundPhoneme = true;
+			    pitches[maxPhons]=0;
+			    vols[maxPhons]=0;
+			}
+		if(!foundPhoneme)
+		    System.out.println("Unknown phoneme: "+phon);
+		
+	    }
+	return new BufferInfo(bufferSize, maxPhons);
+    }
+    
+    /**
+     * Class holding the size of a buffer, and the number of 
+     * phonemes that make up that buffer
+     */
+    private class BufferInfo
+    {
+	int bufferSize, maxPhons;
+	public BufferInfo(int bufferSize, int maxPhons)
+	{
+	    this.bufferSize = bufferSize;
+	    this.maxPhons = maxPhons;
+	}
+	
+    }
+
+    /**
+     * Play a buffer, using the stereo audio format
+     */
+    private static void playStereoBuffer(byte [] data, int length)
+    {
+	try{
+	    //Get a clip
+	    DataLine.Info clipInfo = new DataLine.Info(Clip.class, phonemeForm);
+	    Clip thisClip = (Clip)(AudioSystem.getLine(clipInfo));
+	    thisClip.open(stereoForm, data, 0, length);
+
+	    //Play the sample
+	    thisClip.start();
+
+	    //Block until sample finished
+            long dur = thisClip.getFrameLength()/samplesPerMs; 
+	    Thread.sleep(dur);
+	} catch(Exception E) {E.printStackTrace();}
+    }
+
+    /**
+     * Speak a phoneme sequence, blocking until finished
+     */
+    public void say(final String toSay)
+    {
+	say(toSay, true);
+    }
+    
+    
+    
+    /**
+     * Speak a phoneme sequence, blocking as required. Phonemes
+     * should be slash separated and can have control codes as 
+     * described in constructPhones().
+     */
+    public  void say(final String toSay, boolean wait)
+    {  
+	//Make final copies of variables for the anonymous inner class
+	final int delay = echoDelay;
+	final double delFac = delayMix;
+	final double basePitch = pitch;
+	final double flange = flangeAmt;
+	final double delFilt = delayFilter;
+	final double vol = volume;
+    
+    Thread speechThread = new Thread(){
+	    public void run(){
+
+		//Get the phoneme information
+		byte [] buffer;		
+		int [] phons = new int[500];
+		int [] pitches = new int[500];
+		int [] vols = new int[500];
+		BufferInfo bInfo = constructPhones(toSay, phons, pitches, vols);
+		int maxPhons = bInfo.maxPhons;
+		int bufferSize = bInfo.bufferSize;
+		
+		//Allocate a buffer of appropriate size
+		buffer = new byte[bufferSize];
+		int overlap;
+		int curPos = 0;
+		
+		//For each phoneme
+		for(int i=0;i<maxPhons;i++)
+		    {
+			byte [] phoneme = phonemeCache[phons[i]];
+
+			//Calculate the pitch
+			double offPitch = ((double)pitches[i])/60.0;
+			if(offPitch<0)
+			    offPitch/=2;
+			double newPitch= basePitch + offPitch;
+
+			//Calculate the volume
+			double newVol = vol + ((double)(vols[i])/5.0);
+			int oldCurPos = curPos;
+
+			//Append the current phoneme sample to the audio buffer
+			curPos = append(buffer, phoneme, curPos, newPitch, delay, 
+					delFac, flange, delFilt, newVol, pan);
+
+			//Overlap the samples by the fade amount; this crossfades
+			//adjoining phonemes to smooth the sound
+			overlap = (int)(((double)(curPos-oldCurPos)*((double)(fadePercent)/100.0)));
+
+			//Ensure that the overlap is on a word boundary
+			//to stop byte misalignment and stereo swapping
+			while(overlap%4!=0)
+			    overlap++;
+			curPos-=overlap;
+		    }
+		//Play the buffer
+		playStereoBuffer(buffer, curPos);	       
+	    }
+	};
+    speechThread.start();
+
+    //Block as required
+    if(wait)
+	try{
+	    speechThread.join(); } catch(InterruptedException ie) {}
+    }
+
+    /**
+     * Create a new speaker with default parameters
+     */
+    public Speech()
+    {
+    }
+    
+    /**
+     * Create a new speaker with default parameters and the
+     * given pitch and volume
+     */
+    public Speech(double pitch, double volume)
+    {
+	this.pitch = pitch;
+	this.volume = volume;
+    }
+    
+    /**
+     * Return the pan (0.0--1.0)
+     */
+    public double getPan()
+    {
+	return pan;
+    }
+
+    /**
+     * Return the pitch (0.5--1.5)
+     */
+    public double getPitch()
+    {
+	return pitch;
+    }
+    
+    /**
+     * Return the delay, in samples
+     */
+    public int getDelay()
+    {
+	return echoDelay;
+    }
+    
+    /**
+     * Return the delay mix, (0.0--1.0)
+     */
+    public double getDelayMix()
+    {
+	return delayMix;
+    }
+    
+    /**
+     * Return the flange, 0.0-100.0
+     */
+    public double getFlange()
+    {
+	return flangeAmt;
+    }
+    
+    /**
+     * Return the delay dampning factor (0.0-1.0)
+     */
+    public double getDelayFilter()
+    {
+	return delayFilter;
+    }
+    
+    /**
+     * Return the filtering factor (0.0-1.0)
+     */
+    public double getFilter()
+    {
+	return filter;
+    }
+    
+    /**
+     * Return the current volume
+     */
+    public double getVolume()
+    {
+	return volume;
+    }
+    
+    /**
+     * Set the pitch
+     */
+    public void setPitch(double pitch)
+    {
+	this.pitch = pitch;
+    }
+    
+    /** Set the pan */
+    public void setPan(double pan)
+    {
+	this.pan = pan;
+    }
+
+    /**
+     * Calculate parameters based on the given distance,
+     * simulating a sound source at that distance.
+     * Distance ranges from 0.0 to 1.0. Volume is reduced by
+     * inverse square, dampning is increased as distance increases
+     * and delay level is increased
+     */
+    public void setDistance(double distance)
+    {
+	//Limit distance
+	if(distance>100.0)
+	    distance=100.0;
+	if(distance<0.0)
+	    distance = 0.0;
+
+	//Calculate factors
+	double volFactor = 1.0;
+	double filterFactor = 1.3;
+	double reverbFilter = 0.2;
+	double delayMixFactor = 0.3;
+	double delayFactor = 38;
+	volume = 1/(distance*distance*volFactor);
+	filter = 1.0 - (1/(distance*distance*filterFactor));
+	
+	if(filter<0.0)
+	    filter = 0.0;
+
+	//Calculate delay factors
+	delayMix = distance*distance*delayMixFactor;
+	echoDelay = (int)(distance*delayFactor);
+	delayFilter = reverbFilter;		
+    }
+
+    /** Set the delay in samples */
+    public void setDelay(int delay)
+    {
+	echoDelay = delay;
+    }
+    
+    /** Set the delay mix */
+    public void setDelayMix(double delayMix)
+    {
+	this.delayMix = delayMix;
+    }
+    
+    /** Set the flanging factor */
+    public void setFlangeAmt(double flangeAmt)
+    {
+	this.flangeAmt = flangeAmt;
+    }
+    
+    /** Set the delay filter */
+    public void setDelayFilter(double delayFilter)
+    {
+	this.delayFilter = delayFilter;
+    }
+    
+    /** Set the filter */
+    public void setFilter(double filter)
+    {
+	this.filter = filter;
+    }
+    
+    /** Set the volume */
+    public void setVolume(double volume)
+    {
+	this.volume = volume;
+    }
+
+    /**
+     * Create a new speaker, setting all of the parameters.
+     * <br> <b> pitch </b> relative pitch of speech [0.5 -- 1.5]
+     * <br> <b> volume </b> volume of speech [0.0--1.0]
+     * <br> <b> echoDelay </b> delay tap position in samples
+     * <br> <b> delayMix </b> amount of delay mixed into signal [0.0--1.0]
+     * <br> <b> flangeAmt </b> pitch shift of delay (flanging) [0.0--100.0]
+     * <br> <b> delayFilter </b> delay filtering factor [0.0--1.0]
+     * <br> <b> filter </b> lowpass filter factor [0.0--1.0]
+     * <br> <b> pan </b> Panning position. 0.0=left 0.5=centre 1.0=right
+     */
+
+    public Speech(double pitch, double volume, int echoDelay, double delayMix,
+		  double flangeAmt, double delayFilter, double filter, double pan)
+    {
+	this.pitch = pitch;
+	this.volume = volume;
+	this.echoDelay = echoDelay;
+	this.delayMix = delayMix;
+	this.flangeAmt = flangeAmt;
+	this.delayFilter = delayFilter;
+	this.filter = filter;
+	this.pan = pan;
+    }
+}
+

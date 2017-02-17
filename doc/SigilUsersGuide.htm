@@ -1,0 +1,478 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<LINK REL="stylesheet" HREF="http://www.dcs.gla.ac.uk/~jhw/wiki/mktree.css"><SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/mktree.js" LANGUAGE="JavaScript"> </SCRIPT> <SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/wikiscripts.js" LANGUAGE="JavaScript"></SCRIPT><meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+
+<title>Sigil Users Guide - Dynamics and Interaction Wiki</title>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.style.color = 'black';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.style.color = 'gray';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initiliaze action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/projection.css">
+
+<link rel="alternate" title="Dynamics and Interaction Wiki Recent Changes" href="/dynwiki/RecentChanges?action=rss_rc&amp;ddiffs=1&amp;unique=1" type="application/rss+xml">
+<link rel="Start" href="/dynwiki/FrontPage">
+<link rel="Alternate" title="Wiki Markup" href="/dynwiki/SigilUsersGuide?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/dynwiki/SigilUsersGuide?action=print">
+<link rel="Search" href="/dynwiki/FindPage">
+<link rel="Index" href="/dynwiki/TitleIndex">
+<link rel="Glossary" href="/dynwiki/WordIndex">
+<link rel="Help" href="/dynwiki/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/dynwiki/FrontPage"><img src="http://www.dcs.gla.ac.uk/~jhw/wiki/logo.png"></a></div>
+</div>
+
+<div id="sidebar">
+<div class="sidepanel">
+<h1>Wiki</h1>
+
+<ul id="navibar">
+<li class="wikilink"><a href="/dynwiki/FrontPage">Front Page</a></li>
+<li class="wikilink"><a href="/dynwiki/PrivateFrontPage">Private Front Page</a></li>
+<li class="wikilink"><a href="/dynwiki/FindPage">Find Page</a></li>
+<li class="wikilink"><a href="/dynwiki/HelpContents">Help Contents</a></li>
+<li class="userlink"><a href="/dynwiki/Software">Software</a></li>
+<li class="userlink"><a href="/dynwiki/PocketPcTips">Pocket Pc Tips</a></li>
+<li class="current"><a href="/dynwiki/SigilUsersGuide">Sigil Users Guide</a></li>
+</ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+<div class="sidepanel">
+<h1>Page</h1>
+<ul class="editbar">
+<li><a href="/dynwiki/SigilUsersGuide?action=edit">Edit</a></li>
+<li><a href="/dynwiki/SigilUsersGuide?action=refresh&amp;arena=Page.py&amp;key=text_html">Refresh</a></li>
+<li><a href="/dynwiki/SigilUsersGuide?action=diff">Show Changes</a></li>
+<li><a href="/dynwiki/SigilUsersGuide?action=info">Get Info</a></li>
+<li><a href="/dynwiki/SigilUsersGuide?action=subscribe">Unsubscribe</a></li>
+<li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Show Raw Text</option>
+<option value="print">Show Print View</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="AttachFile">Attachments</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Show Like Pages</option>
+<option value="LocalSiteMap">Show Local Site Map</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="RenamePage">Rename Page</option>
+<option value="DeletePage">Delete Page</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="ExternalEdit">External Edit</option>
+<option value="HTML2MoinMoin">HTML2 Moin Moin</option>
+<option value="ImportHtml">Import Html</option>
+<option value="SpellingCheck">Spelling Check</option>
+<option value="VisualSiteMap">Visual Site Map</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li>
+</ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+<div class="sidepanel">
+<h1>User</h1>
+<ul id="username"><li><a href="/dynwiki/JohnWilliamson">John Williamson</a></li>
+<li><a href="/dynwiki/UserPreferences">User Preferences</a></li></ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+</div>
+
+<div id="page" lang="en" dir="ltr"><!-- start page -->
+
+
+<h1 id="title"><a title="Click to do a full-text search for this title" href="/dynwiki/SigilUsersGuide?action=fullsearch&amp;value=SigilUsersGuide&amp;literal=1&amp;case=1&amp;context=40">Sigil Users Guide</a></h1>
+<div lang="en" id="content" dir="ltr">
+<a id="top"></a>
+<ol>
+
+<li>
+<a href="#head-e6db2dba3d18ce059f654dde3d04228fb129f0ef">Users Guide</a>
+<ol>
+
+<ol>
+
+<li>
+<a href="#head-6888f70cc5e594bf17d473e14ec22f75c330225d">Creating and connecting devices</a>
+</li>
+
+<li>
+<a href="#head-10ae941b26f59e888bfcae91e3a0bfa8789b1a47">Selection</a>
+</li>
+
+<li>
+<a href="#head-6bdaedab3463f02e60781f0697d4863070f0b268">Saving and loading</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-52268900cf1f6bccdf96e3e7b97a06c5c5d632ee">Controls</a>
+</li>
+
+<li>
+<a href="#head-ea697ff45a8e2be65afb2540448c33cb74cbb757">Menus</a>
+<ol>
+
+<li>
+<a href="#head-9e935b36905fb9d7916a4354f4a8cf38eb0d1883">Global</a>
+</li>
+
+<li>
+<a href="#head-11986b593a1fcf67a82d729ca0815282993e03d5">Device context</a>
+</li>
+
+<li>
+<a href="#head-10ae941b26f59e888bfcae91e3a0bfa8789b1a47-2">Selection</a>
+</li>
+
+<li>
+<a href="#head-aee08b948a190cd93e7636fa724854335d01cc15">Device selector</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-149b6ac9ae24c03cb2a4532e54439f632f7d7609">Common problems</a>
+</li>
+
+<li>
+<a href="#head-c4fac00286c119dcc05951db44af51048e1fff5a">The filesystem structure</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-43e4075e4206b3392256c2c947b2d2b5b5dc424f">FAQ</a>
+</li>
+
+</ol>
+<p> </p>
+
+<h3 id="head-e6db2dba3d18ce059f654dde3d04228fb129f0ef">Users Guide</h3>
+
+
+<h5 id="head-6888f70cc5e594bf17d473e14ec22f75c330225d">Creating and connecting devices</h5>
+
+<p>To create a device, middle click, and then click on the name of the appropriate device group. A list of the devices in that group will then be displayed. Clicking on the name of the device will then create a new instance of that device. For example, choosing <tt>Input&nbsp;devices</tt>, then <tt>MousePad</tt> will create a new mouse input device. The devices are described in <a href="/dynwiki/SigilDevices">SigilDevices</a>. </p>
+<p>Devices can be connected by shift-dragging from the device producing the output to the device to receive the input. The connection can be removed by ctrl-clicking on the arrow on the interconnecting line. The width of the signal path is shown by the number of lines connecting the devices; a gray line indicates that only objects pass through the connection. </p>
+
+<h5 id="head-10ae941b26f59e888bfcae91e3a0bfa8789b1a47">Selection</h5>
+
+<p>Selections can be made by either dragging the mouse to make a new selection or by shift-clicking to add a device to the current selection. Selected devices can be grouped by then right-clicking and choosing “Group” from the popup menu. Groups can be expanded by right-clicking on the group and choosing “Expand”, similarly bringing up the context menu for a device in a group will bring up a “Contract” option. </p>
+
+<h5 id="head-6bdaedab3463f02e60781f0697d4863070f0b268">Saving and loading</h5>
+
+<p>Setups can be saved and loaded as desired; all device properties will be maintained. The save and load options can be accessed via the global popup menu (brought up by right-clicking over an empty area), or from the bar at the bottom of the screen. The bar will only appear when the mouse pointer is near the bottom of the window to maximize use of screen space. </p>
+
+<h4 id="head-52268900cf1f6bccdf96e3e7b97a06c5c5d632ee">Controls</h4>
+
+<p>The following keys and controls are used in SIGIL: </p>
+<ul>
+<li><p> <strong>Double-click</strong> while over a device brings up the device interface. </p>
+</li>
+<li><p> <strong>Shift-drag</strong> while over a device drags a connection to another device. </p>
+</li>
+<li><p> <strong>Shift-click</strong> adds a device to the current selection. </p>
+</li>
+<li><p> <strong>Click</strong>, while not over a device deselects. </p>
+</li>
+<li><p> <strong>Drag</strong> drags a selection. </p>
+</li>
+<li><p> <strong>Ctrl-click</strong>, if over an arrow connecting two devices, deletes the connection </p>
+</li>
+<li><p> <strong>Right-click</strong> brings up the context menu for the device if over a device, the menu for a selection if there is a selection, and the system menu if not over a device and there is no selection. </p>
+</li>
+<li><p> <strong>Middle-click</strong> brings up the device selector. </p>
+</li>
+</ul>
+<p>All of the following commands are accessible via the menus, but also have associated keyboard shortcuts. </p>
+<ul>
+<li><p> <strong>Alt-S</strong> saves the current setup. </p>
+</li>
+<li><p> <strong>Alt-O</strong> opens a setup. </p>
+</li>
+<li><p> <strong>Alt-D</strong> brings up the device selector </p>
+</li>
+<li><p> <strong>Alt-P</strong> updates a device (loads a new class file). </p>
+</li>
+<li><p> <strong>Alt-E</strong> evolves a device, if the device supports this. </p>
+</li>
+<li><p> <strong>Alt-A</strong> brings up the about box. </p>
+</li>
+<li><p> <strong>Alt-Z</strong> undoes the last action. </p>
+</li>
+<li><p> <strong>Alt-R</strong> redoes the last undo. </p>
+</li>
+<li><p> <strong>Alt-Y</strong> synchronizes all devices </p>
+</li>
+<li><p> <strong>Alt-U</strong> desynchronizes all devices </p>
+</li>
+</ul>
+
+<h4 id="head-ea697ff45a8e2be65afb2540448c33cb74cbb757">Menus</h4>
+
+
+<h5 id="head-9e935b36905fb9d7916a4354f4a8cf38eb0d1883">Global</h5>
+
+<p>The global menu is displayed when right clicking over an empty area of the screen, when there is no selection. The following commands are available from the system menu: </p>
+<ul>
+<li><p> Save displays a filechooser from which the current setup can be saved. The user will be prompted for an annotation to add or edit, which will be saved to the file. The version number for a setup will be incremented every time it is saved. Files are saved with a “.sgc” extension. </p>
+</li>
+<li><p> Load displays a fisheye filechooser, from which SIGIL files can be selected. A loaded setup will replace the current configuration. Note that the meta information about the file is displayed in the chooser, beside the filename, when sufficient space is available. The last modified date, the version number and the annotation are all displayed. </p>
+</li>
+<li><p> New clears the current setup, after warning the user. </p>
+</li>
+<li><p> Merge is similar to load, but the devices in the new setup will be added to the current setup, rather than replacing them. </p>
+</li>
+<li><p> Synchronize all switches all devices into synchronized mode. </p>
+</li>
+<li><p> Desynchronize all desynchronizes all devices which support desynchronization. This provides lower </p>
+</li>
+</ul>
+<p>latency, but can lead to problems when multiple signal paths are combined. </p>
+<ul>
+<li><p> Undo undoes the last undoable action. Undoable actions include load, merge, delete, or adding a device. The number of undoes available is shown beside the menu entry. </p>
+</li>
+<li><p> Redo redoes the last action undone. The number of redoes available is shown beside the menu entry. </p>
+</li>
+<li><p> Snapshot forces the current setup to be placed on the undo buffer. This is useful while experimenting with device parameters, in order to allow returning to a known working setup. </p>
+</li>
+<li><p> Undo enabled can be checked or unchecked. Unchecking it will clear the undo history. </p>
+</li>
+<li><p> Devices... brings up the device selector. </p>
+</li>
+<li><p> Update Device... brings up a dialog box asking for a device name. A device with that name will then be loaded from disk if possible, and then added to the device selector. This is useful if the module index file does not reflect the actual modules present. </p>
+</li>
+<li><p> About... brings up the about box. </p>
+</li>
+</ul>
+
+<h5 id="head-11986b593a1fcf67a82d729ca0815282993e03d5">Device context</h5>
+
+<p>Right-clicking on a device brings up the following menu: </p>
+<ul>
+<li><p> Delete removes the device from the setup, disconnecting it as necessary. </p>
+</li>
+<li><p> Rename brings up a dialog to change the displayed name of the device. </p>
+</li>
+<li><p> Evolve... if shown, goes to the evolutionary interface to mutate the device. </p>
+</li>
+<li><p> If the device is in a group the following additional commands are available: </p>
+<ul>
+<li><p> Ungroup removes this device from its group. </p>
+</li>
+<li><p> Contract causes the device and all of its siblings to contract back into the parent group. </p>
+</li>
+</ul>
+</li>
+<li><p> If the device is a group the following additional commands are available: </p>
+<ul>
+<li><p> Expand causes the group to expand, revealing all of the sub-components. </p>
+</li>
+<li><p> Break apart expands the group and then ungroups all of the components within. </p>
+</li>
+<li><p> All Synchronous can be checked or unchecked. It is checked if every member of the group is synchronous, unchecked otherwise. Checking it makes all members synchronous, unchecking it makes all members non-synchronous. </p>
+</li>
+</ul>
+</li>
+<li><p> Synchronous shows the current synchronous status of the device. The state can be toggled by checking or unchecking. </p>
+</li>
+<li><p> Show source... brings up a window containing the source code for the device if it is available. The command will not be shown if the source cannot be found. </p>
+</li>
+</ul>
+
+<h5 id="head-10ae941b26f59e888bfcae91e3a0bfa8789b1a47-2">Selection</h5>
+
+<p>When there is a selection, right-clicking will bring up the following commands: </p>
+<ul>
+<li><p> Group adds all components in the selection to a new group. A dialog box will be presented to request a new name for the group. </p>
+</li>
+<li><p> Delete will remove all the components in the selection. </p>
+</li>
+</ul>
+
+<h5 id="head-aee08b948a190cd93e7636fa724854335d01cc15">Device selector</h5>
+
+<p>The device selector shows a list of each of the types of devices in SIGIL. Clicking on a type group will expand it, showing all of the actual devices in that group. Clicking on the group name again will cause that group to contract. When the list becomes larger than the available space, scroll arrows will appear at the top and bottom; clicking and holding on these will scroll the list. Clicking on a device will cause a new instance to be created. The device selector can be dragged around by grabbing any part of the device window which is not a group or device name. </p>
+
+<h4 id="head-149b6ac9ae24c03cb2a4532e54439f632f7d7609">Common problems</h4>
+
+<ul>
+<li><p> <strong>Signals seem to be getting lost</strong> </p>
+<ul>
+<li style="list-style-type:none"><p>The buffer size can be adjusted via the “Buffers” option, from the context menu for a device. The default buffer size is usually more than enough though, so it is more likely that the signals are simply being delayed due to CPU overload. </p>
+</li>
+</ul>
+</li>
+<li><p> <strong>Devices won’t connect</strong> </p>
+<ul>
+<li style="list-style-type:none"><p>Check that the connection would not violate the topology constraints; that is no loops would exist in the device graph. Also check that the connection is not being made to a device that can only take a single signal, and which already has a connection. Some devices, like the graphing devices are “terminating” and do not produce output, and thus they have no output to connect to other devices. These devices have dark bars at the top and bottom to indicate this. </p>
+</li>
+</ul>
+</li>
+<li><p> <strong>Signals out of sync when using Combiner, Switch, etc</strong> </p>
+<ul>
+<li style="list-style-type:none"><p>Try resynchronizing the entire setup (Alt-Y or select “Synchronize all” from the system menu). </p>
+</li>
+</ul>
+</li>
+<li><p> <strong>High latency</strong> </p>
+<ul>
+<li style="list-style-type:none"><p>Latency can sometimes be improved by switching to semi-synchronous mode. Do this using Alt-U or “Desynchronize all” from the system menu, but be aware of the synchronization problem noted above. </p>
+</li>
+</ul>
+</li>
+<li><p> <strong>Memory is low</strong> </p>
+<ul>
+<li style="list-style-type:none"><p>Try disabling undo; if the setup is very complicated, undo can use a large amount of memory. </p>
+</li>
+</ul>
+</li>
+<li><p> <strong>Cannot receive backwards passed objects</strong> </p>
+<ul>
+<li style="list-style-type:none"><p>Devices that wish to receive backwards passed objects must actually be in the signal path; they cannot simply be attached as leaf nodes to devices higher up the device graph. </p>
+</li>
+</ul>
+</li>
+</ul>
+
+<h4 id="head-c4fac00286c119dcc05951db44af51048e1fff5a">The filesystem structure</h4>
+
+<p>There are four main directories in the SIGIL file structure. If SIGIL is being run from a jar file, the current path is the root path of the jar file. The structure is: </p>
+<ul>
+<li><p> . The current path, which must contain all of the device classes and any auxiliary files they require. </p>
+<ul>
+<li><p> sigil contains all of the class files necessary for the main system. </p>
+</li>
+<li><p> duotonic holds the class files for the sound-related subsystem; speech, MIDI and the Shepard tone synthesizer. The classes “duotonic.PositionDemo”, “duotonic.Duotonic” and “duotonic.ParadoxSynthesizer” can all be executed to give demos of the some of the various sound functions. </p>
+</li>
+<li><p> lib contains all of the auxiliary files necessary for SIGIL and its modules to operate. This includes the English phonetic translation tables, the Markov model of the English language and the Earwig standard library  (see <a href="/dynwiki/UsingEarwig">UsingEarwig</a>). </p>
+</li>
+<li><p> allophones contains samples of each of the phonemes used by the system, as spoken by the author. The file “phoneme.lst” in the “lib/” directory contains a complete list of these. Note that the filenames must be uppercase. </p>
+</li>
+<li><p> paradox contains short loops for each of the 12 Shepard tones, in N1.WAV...N12.WAV. Again, all names must be in uppercase. </p>
+</li>
+</ul>
+</li>
+</ul>
+
+<h3 id="head-43e4075e4206b3392256c2c947b2d2b5b5dc424f">FAQ</h3>
+
+<ul>
+<li><p> <strong>Q</strong> What does Sigil mean? </p>
+</li>
+<li><p> <strong>A</strong> </p>
+<pre>
+sig·il  n. 
+
+   1. A seal; a signet.
+   2. A sign or an image considered magical.
+</pre>
+</li>
+<li class="gap"><p> <strong>Q</strong> Sample timing seems a bit unreliable. </p>
+</li>
+<li><p> <strong>A</strong> Unfortunately Java does not have very effective real-time capabilities. Timing is not accurate in Sigil. </p>
+</li>
+</ul>
+<a id="bottom"></a>
+
+</div>
+<div id="pagebottom"></div>
+</div> <!-- end page -->
+
+
+<SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/tailscripts.js" LANGUAGE="JavaScript"></SCRIPT></body>
+</html>
+

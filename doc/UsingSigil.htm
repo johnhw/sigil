@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<LINK REL="stylesheet" HREF="http://www.dcs.gla.ac.uk/~jhw/wiki/mktree.css"><SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/mktree.js" LANGUAGE="JavaScript"> </SCRIPT> <SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/wikiscripts.js" LANGUAGE="JavaScript"></SCRIPT><meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="noindex,nofollow">
+
+
+<title>Using Sigil - Dynamics and Interaction Wiki</title>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.style.color = 'black';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.style.color = 'gray';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initiliaze action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/projection.css">
+
+<link rel="alternate" title="Dynamics and Interaction Wiki Recent Changes" href="/dynwiki/RecentChanges?action=rss_rc&amp;ddiffs=1&amp;unique=1" type="application/rss+xml">
+<link rel="Start" href="/dynwiki/FrontPage">
+<link rel="Alternate" title="Wiki Markup" href="/dynwiki/UsingSigil?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/dynwiki/UsingSigil?action=print">
+<link rel="Search" href="/dynwiki/FindPage">
+<link rel="Index" href="/dynwiki/TitleIndex">
+<link rel="Glossary" href="/dynwiki/WordIndex">
+<link rel="Help" href="/dynwiki/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/dynwiki/FrontPage"><img src="http://www.dcs.gla.ac.uk/~jhw/wiki/logo.png"></a></div>
+</div>
+
+<div id="sidebar">
+<div class="sidepanel">
+<h1>Wiki</h1>
+
+<ul id="navibar">
+<li class="wikilink"><a href="/dynwiki/FrontPage">Front Page</a></li>
+<li class="wikilink"><a href="/dynwiki/PrivateFrontPage">Private Front Page</a></li>
+<li class="wikilink"><a href="/dynwiki/FindPage">Find Page</a></li>
+<li class="wikilink"><a href="/dynwiki/HelpContents">Help Contents</a></li>
+<li class="userlink"><a href="/dynwiki/Software">Software</a></li>
+<li class="userlink"><a href="/dynwiki/PocketPcTips">Pocket Pc Tips</a></li>
+<li class="current"><a href="/dynwiki/UsingSigil">Using Sigil</a></li>
+</ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+<div class="sidepanel">
+<h1>Page</h1>
+<ul class="editbar">
+<li><a href="/dynwiki/UsingSigil?action=edit">Edit</a></li>
+<li><a href="/dynwiki/UsingSigil?action=diff">Show Changes</a></li>
+<li><a href="/dynwiki/UsingSigil?action=info">Get Info</a></li>
+<li><a href="/dynwiki/UsingSigil?action=subscribe">Unsubscribe</a></li>
+<li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Show Raw Text</option>
+<option value="print">Show Print View</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="AttachFile">Attachments</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Show Like Pages</option>
+<option value="LocalSiteMap">Show Local Site Map</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="RenamePage">Rename Page</option>
+<option value="DeletePage">Delete Page</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="ExternalEdit">External Edit</option>
+<option value="HTML2MoinMoin">HTML2 Moin Moin</option>
+<option value="ImportHtml">Import Html</option>
+<option value="SpellingCheck">Spelling Check</option>
+<option value="VisualSiteMap">Visual Site Map</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li>
+</ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+<div class="sidepanel">
+<h1>User</h1>
+<ul id="username"><li><a href="/dynwiki/JohnWilliamson">John Williamson</a></li>
+<li><a href="/dynwiki/UserPreferences">User Preferences</a></li></ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+</div>
+
+<div id="page" lang="en" dir="ltr"><!-- start page -->
+
+
+<h1 id="title"><a title="Click to do a full-text search for this title" href="/dynwiki/UsingSigil?action=fullsearch&amp;value=UsingSigil&amp;literal=1&amp;case=1&amp;context=40">Using Sigil</a></h1>
+<div lang="en" id="content" dir="ltr">
+<a id="top"></a>
+<div>
+<table>
+<tr>
+<td style="border: 0">
+<p> <img src="http://www.dcs.gla.ac.uk/~jhw/sigil.jpg" alt="sigil"> </p>
+</td>
+<td style="border: 0; vertical-align: top;">
+<p> <strong class="highlight">Sigil</strong> is a tool for rapidly constructing sophisticated gesture recognition and sonification prototypes using a visual programming metaphor. It includes a large number of pre-built components for the manipulation and sonification of gesture. <strong class="highlight">Sigil</strong> runs under Java and so is portable to many platforms. </p>
+</td>
+</tr>
+</table>
+</div>
+<hr class="hr1">
+<p> </p>
+<ol>
+
+<li>
+<a href="#head-d42279f02aa68e66847f97bf4fa1074f011fc38f">Installing</a>
+</li>
+
+<li>
+<a href="#head-fceb485a8b82b9e6997ba3bde0dd555e79650b8e">Recompiling</a>
+</li>
+
+<li>
+<a href="#head-0d4ef10e62e9c17675dba57e3bc86fb5fe729b5b">Troubleshooting</a>
+</li>
+
+<li>
+<a href="#head-559ceca626ce8aa714b841cd3868ac5db95856d1">Users Guide</a>
+</li>
+
+<li>
+<a href="#head-d3551b51daa15606c0a4914c5bb77cfee102b5e5">Screenshots</a>
+</li>
+
+<li>
+<a href="#head-cec6bc1f5f6f314718ca713ff573713aa57ca360">More details</a>
+</li>
+
+</ol>
+<p> </p>
+
+<h3 id="head-d42279f02aa68e66847f97bf4fa1074f011fc38f">Installing</h3>
+
+<p><strong class="highlight">Sigil</strong> runs on any environment supporting Java. Windows and Linux have been tested. Versions 1.3 and 1.4 of the Java Virtual Machine are known to work -- 1.5 should as well, but it's not been tested. If you don't have the Java runtime, get it at <a href="http://java.sun.com"><img src="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/img/" alt="" height="1" width="1"> http://java.sun.com</a>. </p>
+<p>If you just want to run <strong class="highlight">Sigil</strong>, download <a class="external" href="http://www.dcs.gla.ac.uk/~jhw/sigil.jar"><img src="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/img/" alt="" height="1" width="1"> <strong class="highlight">sigil</strong>.jar</a> (<strong>1.2Mb</strong>). Run with <tt>java&nbsp;-jar&nbsp;<strong class="highlight">sigil</strong>.jar</tt> </p>
+<p>If you want to develop <strong class="highlight">Sigil</strong>, download <a class="external" href="http://www.dcs.gla.ac.uk/~jhw/Sigil.zip"><img src="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/img/" alt="" height="1" width="1"> <strong class="highlight">sigil</strong>.zip</a>(<strong>4.3Mb</strong>), which includes the source code. Unzip to a directory of your choice. On Windows you can use <tt>run.bat</tt>. On other systems just execute <tt>java&nbsp;-classpath&nbsp;.&nbsp;<strong class="highlight">sigil</strong>.SignalSystem</tt>. Some example setups can be found in the directory <tt>/setups</tt>. </p>
+
+<h3 id="head-fceb485a8b82b9e6997ba3bde0dd555e79650b8e">Recompiling</h3>
+
+<p>Recompile with <tt>javac&nbsp;*.java&nbsp;<strong class="highlight">sigil</strong>\*.java&nbsp;duotonic\*.java</tt>. </p>
+
+<h3 id="head-0d4ef10e62e9c17675dba57e3bc86fb5fe729b5b">Troubleshooting</h3>
+
+<p>If the system fails to run, check the file <tt>errlog</tt> for details of the problem. If you receive errors about modules not being in the path, you can remove the offending modules from the file <tt>modules.txt</tt> in the <tt>/lib</tt> subdirectory. </p>
+
+<h3 id="head-559ceca626ce8aa714b841cd3868ac5db95856d1">Users Guide</h3>
+
+<p>Full instructions for use are given in <a href="/dynwiki/SigilUsersGuide"><strong class="highlight">Sigil</strong>UsersGuide</a> </p>
+
+<h3 id="head-d3551b51daa15606c0a4914c5bb77cfee102b5e5">Screenshots</h3>
+
+<p>Some images of <strong class="highlight">Sigil</strong> in action are given below: </p>
+<div>
+<table>
+<tr>
+<td style="border: 0">
+<p> <img src="http://www.dcs.gla.ac.uk/~jhw/sigil/overview2n.jpg" alt="overview2n"> </p>
+</td>
+<td style="border: 0">
+<p>  <img src="http://www.dcs.gla.ac.uk/~jhw/sigil/overview3n.jpg" alt="overview3n"></p>
+</td>
+</tr>
+<tr>
+<td style="border: 0">
+<p>  <img src="http://www.dcs.gla.ac.uk/~jhw/sigil/befgroupn.JPG" alt="befgroupn"></p>
+</td>
+<td style="border: 0">
+<p> </p>
+</td>
+</tr>
+</table>
+</div>
+
+<h3 id="head-cec6bc1f5f6f314718ca713ff573713aa57ca360">More details</h3>
+
+<p>Complete report, including details of the design and construction of <strong class="highlight">SIGIL</strong> are available in my <a class="external" href="http://www.dcs.gla.ac.uk/~jhw/REPORT.PDF"><img src="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/img/" alt="" height="1" width="1"> 4th year report</a> <strong>6.2Mb</strong>. </p>
+<a id="bottom"></a>
+
+</div>
+<div id="pagebottom"></div>
+</div> <!-- end page -->
+
+
+<SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/tailscripts.js" LANGUAGE="JavaScript"></SCRIPT></body>
+</html>
+

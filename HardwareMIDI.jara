@@ -1,0 +1,141 @@
+import javax.sound.midi.*;
+
+public class HardwareMIDI implements MidiChannel
+{
+    
+    private int channelIndex;
+    private int pitchBend = 0;
+    private boolean mute = false;
+
+    public HardwareMIDI(int channelIndex)
+    {
+	this.channelIndex = channelIndex;
+    }
+
+    
+    public void allNotesOff()
+    {
+	//Send noteoffs
+    }
+
+    public void allSoundOff()
+    {
+	//Send noteoffs
+
+    }
+
+    
+    public void controlChange(int controller, int value)
+    {
+
+    }
+    
+    public int getChannelPressure()
+    {
+
+    }
+
+    public boolean getMono()
+    {
+	return false;
+    } 
+
+    public boolean getMute()
+    {
+	return mute;
+    }
+
+    public boolean getOmni()
+    {
+	return false;
+    }
+    
+    public int getPitchBend()
+    {
+	return pitchBend;
+    }
+
+    public int getPolyPressure(int noteNumber)
+    {
+	return 127;
+    }
+
+    public int getProgram()
+    {
+	return patch;
+    }
+
+    public boolean getSolo()
+    {
+	return false;
+    }
+
+    public boolean localControl(boolean localControl)
+    {
+	return true;
+    }
+
+    public void noteOff(int noteNumber)
+    {
+	//Send noteoff
+    }
+
+    public void noteOff(int noteNumber, int velocity)
+    {
+	//send noteoff
+    }
+
+    public void noteOn(int noteNumber, int velocity)
+    {
+	//send note on
+    }
+
+    public void programChange(int program)
+    {
+	//Send prog. change
+    }
+
+    public void programChange(int bank, int program)
+    {
+	programChange(program);
+    }
+
+    public void resetAllControllers()
+    {
+	//reset controllers
+    }
+
+    public void setMono(boolean on)
+    {
+
+    }
+
+    public void setMute(boolean mute)
+    {
+	this.mute = mute;
+    }
+
+    public void setOmni(boolean on)
+    {
+
+    }
+
+    public void setPitchBend(int bend)
+    {
+	pitchBend = bend;
+	//Send pitch bend
+    }
+
+    public void setPolyPressure(int noteNumber, int pressure)
+    {
+	//Nothing
+    }
+
+    public void setSolo(boolean soloState)
+    {
+
+    }
+
+    
+
+}

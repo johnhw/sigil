@@ -1,0 +1,61 @@
+*Object passing
+Asynchronize
+HetSynchronizer
+HetWatcher
+*Recognizers
+BestMatchModel
+Quantizer
+MarkovModel
+FSMModel
+*Signal processing
+Spectral
+Scale
+Delay
+Sum
+Inverter
+FFT
+SineModulator
+SimpleFilter
+SimpleHFilter
+SimpleDifferentiator
+SimpleIntegrator
+*Signal routing
+Combiner
+Switch
+Matrix
+*Visualization
+TimeGraph
+TraceView
+WireframeView
+ZeroSignature
+ContinuousProbability
+SimpleDisplay
+*Input devices
+MousePad
+ClickPad
+SigGen
+Playback
+*Sonification
+OrbitSound
+SpaceMIDI
+HMMSonification
+MIDIOutput
+Melody
+StateMIDI
+StatePhonetic
+ZeroCross
+ZeroSpeech
+SummativeFeedback
+*Gesture related
+GestureDisplay
+GestureHistogram
+GestureLogger
+NetworkTransfer
+*Misc
+RhythmTest
+RhythmLock
+Timer
+Recorder
+RhythmLoop
+Resynthesizer
+

@@ -1,0 +1,643 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<LINK REL="stylesheet" HREF="http://www.dcs.gla.ac.uk/~jhw/wiki/mktree.css"><SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/mktree.js" LANGUAGE="JavaScript"> </SCRIPT> <SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/wikiscripts.js" LANGUAGE="JavaScript"></SCRIPT><meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="robots" content="index,nofollow">
+
+
+<title>Sigil Devices - Dynamics and Interaction Wiki</title>
+
+<script type="text/javascript">
+<!--// common functions
+
+// We keep here the state of the search box
+searchIsDisabled = false;
+
+function searchChange(e) {
+    // Update search buttons status according to search box content.
+    // Ignore empty or whitespace search term.
+    var value = e.value.replace(/\s+/, '');
+    if (value == '' || searchIsDisabled) { 
+        searchSetDisabled(true);
+    } else {
+        searchSetDisabled(false);
+    }
+}
+
+function searchSetDisabled(flag) {
+    // Enable or disable search
+    document.getElementById('fullsearch').disabled = flag;
+    document.getElementById('titlesearch').disabled = flag;
+}
+
+function searchFocus(e) {
+    // Update search input content on focus
+    if (e.value == 'Search') {
+        e.value = '';
+        e.style.color = 'black';
+        searchIsDisabled = false;
+    }
+}
+
+function searchBlur(e) {
+    // Update search input content on blur
+    if (e.value == '') {
+        e.value = 'Search';
+        e.style.color = 'gray';
+        searchIsDisabled = true;
+    }
+}
+
+function actionsMenuInit(title) {
+    // Initiliaze action menu
+    for (i = 0; i < document.forms.length; i++) {
+        var form = document.forms[i];
+        if (form.className == 'actionsmenu') {
+            // Check if this form needs update
+            var div = form.getElementsByTagName('div')[0];
+            var label = div.getElementsByTagName('label')[0];
+            if (label) {
+                // This is the first time: remove label and do buton.
+                div.removeChild(label);
+                var dobutton = div.getElementsByTagName('input')[0];
+                div.removeChild(dobutton);
+                // and add menu title
+                var select = div.getElementsByTagName('select')[0];
+                var item = document.createElement('option');
+                item.appendChild(document.createTextNode(title));
+                item.value = 'show';
+                select.insertBefore(item, select.options[0]);
+                select.selectedIndex = 0;
+            }
+        }
+    }
+}
+//-->
+</script>
+
+<link rel="stylesheet" type="text/css" charset="utf-8" media="all" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/common.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="screen" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/screen.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="print" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/print.css">
+<link rel="stylesheet" type="text/css" charset="utf-8" media="projection" href="http://www.dcs.gla.ac.uk/~jhw/wiki/moin/rightsidebar/css/projection.css">
+
+<link rel="alternate" title="Dynamics and Interaction Wiki Recent Changes" href="/dynwiki/RecentChanges?action=rss_rc&amp;ddiffs=1&amp;unique=1" type="application/rss+xml">
+<link rel="Start" href="/dynwiki/FrontPage">
+<link rel="Alternate" title="Wiki Markup" href="/dynwiki/SigilDevices?action=raw">
+<link rel="Alternate" media="print" title="Print View" href="/dynwiki/SigilDevices?action=print">
+<link rel="Search" href="/dynwiki/FindPage">
+<link rel="Index" href="/dynwiki/TitleIndex">
+<link rel="Glossary" href="/dynwiki/WordIndex">
+<link rel="Help" href="/dynwiki/HelpOnFormatting">
+</head>
+
+<body  lang="en" dir="ltr">
+
+<div id="header">
+<div id="logo"><a href="/dynwiki/FrontPage"><img src="http://www.dcs.gla.ac.uk/~jhw/wiki/logo.png"></a></div>
+</div>
+
+<div id="sidebar">
+<div class="sidepanel">
+<h1>Wiki</h1>
+
+<ul id="navibar">
+<li class="wikilink"><a href="/dynwiki/FrontPage">Front Page</a></li>
+<li class="wikilink"><a href="/dynwiki/PrivateFrontPage">Private Front Page</a></li>
+<li class="wikilink"><a href="/dynwiki/FindPage">Find Page</a></li>
+<li class="wikilink"><a href="/dynwiki/HelpContents">Help Contents</a></li>
+<li class="userlink"><a href="/dynwiki/Software">Software</a></li>
+<li class="userlink"><a href="/dynwiki/PocketPcTips">Pocket Pc Tips</a></li>
+<li class="current"><a href="/dynwiki/SigilDevices">Sigil Devices</a></li>
+</ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+<div class="sidepanel">
+<h1>Page</h1>
+<ul class="editbar">
+<li><a href="/dynwiki/SigilDevices?action=edit">Edit</a></li>
+<li><a href="/dynwiki/SigilDevices?action=refresh&amp;arena=Page.py&amp;key=text_html">Refresh</a></li>
+<li><a href="/dynwiki/SigilDevices?action=diff">Show Changes</a></li>
+<li><a href="/dynwiki/SigilDevices?action=info">Get Info</a></li>
+<li><a href="/dynwiki/SigilDevices?action=subscribe">Unsubscribe</a></li>
+<li>
+<form class="actionsmenu" method="get" action="">
+<div>
+    <label>More Actions:</label>
+    <select name="action"
+        onchange="if ((this.selectedIndex != 0) &&
+                      (this.options[this.selectedIndex].disabled == false)) {
+                this.form.submit();
+            }
+            this.selectedIndex = 0;">
+        <option value="raw">Show Raw Text</option>
+<option value="print">Show Print View</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="AttachFile">Attachments</option>
+<option value="SpellCheck">Check Spelling</option>
+<option value="LikePages">Show Like Pages</option>
+<option value="LocalSiteMap">Show Local Site Map</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="RenamePage">Rename Page</option>
+<option value="DeletePage">Delete Page</option>
+<option value="show" disabled class="disabled">--------</option>
+<option value="ExternalEdit">External Edit</option>
+<option value="HTML2MoinMoin">HTML2 Moin Moin</option>
+<option value="ImportHtml">Import Html</option>
+<option value="SpellingCheck">Spelling Check</option>
+<option value="VisualSiteMap">Visual Site Map</option>
+    </select>
+    <input type="submit" value="Do">
+</div>
+<script type="text/javascript">
+<!--// Init menu
+actionsMenuInit('More Actions:');
+//-->
+</script>
+</form>
+</li>
+</ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+<div class="sidepanel">
+<h1>User</h1>
+<ul id="username"><li><a href="/dynwiki/JohnWilliamson">John Williamson</a></li>
+<li><a href="/dynwiki/UserPreferences">User Preferences</a></li></ul>
+
+<img src = "http://www.dcs.gla.ac.uk/~jhw/wiki/footer.png">
+</div>
+</div>
+
+<div id="page" lang="en" dir="ltr"><!-- start page -->
+
+
+<h1 id="title"><a title="Click to do a full-text search for this title" href="/dynwiki/SigilDevices?action=fullsearch&amp;value=SigilDevices&amp;literal=1&amp;case=1&amp;context=40">Sigil Devices</a></h1>
+<div lang="en" id="content" dir="ltr">
+<a id="top"></a>
+<ol>
+
+<li>
+<a href="#head-547af678a7fa319b5ce0fdf2eefad8f5c2991006">Devices</a>
+<ol>
+
+<li>
+<a href="#head-893afea6129b7e2fe5f383744340c6a7ca6dd7be">Gesture related</a>
+<ol>
+
+<li>
+<a href="#head-1326a304e1a83f60836e6091ef5b5fbdd627fda9">GestureDisplay</a>
+</li>
+
+<li>
+<a href="#head-a5e8b30903e43c347e7356fbdb149c113fa53721">GestureHistogram</a>
+</li>
+
+<li>
+<a href="#head-307d23c5508ed498f3301cf1f940764fc8ed8040">GestureLogger</a>
+</li>
+
+<li>
+<a href="#head-f1065d4c35c756615251d8eded79c25607b6f288">NetworkTransfer</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-e9631b7633cbf6a3674bf05cc5ff2733781ba6be">Input devices</a>
+<ol>
+
+<li>
+<a href="#head-e61ef2acc73ebf2878987e87a624ca64b72206a1">InterTrax</a>
+</li>
+
+<li>
+<a href="#head-d9aa1165e8c161a404d85c66d0475297ae429130">MousePad</a>
+</li>
+
+<li>
+<a href="#head-1361fcf9a4683c87eb8e3b0fe4e853d6d9c75470">SigGen</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-79fd349d975e431a1f72ccda83908f4e9fad5997">Miscellaneous</a>
+<ol>
+
+<li>
+<a href="#head-26ec375d777e1aeb2fc80f381c784f79d3fbb22b">Playback</a>
+</li>
+
+<li>
+<a href="#head-6c1049d18d5821855076de841a3e1618666c4250">Recorder</a>
+</li>
+
+<li>
+<a href="#head-290e5b0517e503cd0f65503e902d9f25a12b12d5">Resynthesizer</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-812cacefdf274dde557186af58de037d1ef43427">Object passing</a>
+<ol>
+
+<li>
+<a href="#head-a2cc31bd7ffc390f5b7166dd34c98dc495f52ef6">Asynchronize</a>
+</li>
+
+<li>
+<a href="#head-74102e3c7a90b8ab7f4b233f899cc2ec22bbc8a5">HetSynchronizer</a>
+</li>
+
+<li>
+<a href="#head-aefc814f722cb1a3c3811df4c1b0ec2621613775">HetWatcher</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-04b3634b20b9efe218c329273792602e5447e735">Recognizers</a>
+<ol>
+
+<li>
+<a href="#head-97a6b69150459cccf765ff02eaf9b7815515fdd9">BestMatchModel</a>
+</li>
+
+<li>
+<a href="#head-f4fa255e3f79a121dc2c16c1cb37b0a41fea7b94">FSMModel</a>
+</li>
+
+<li>
+<a href="#head-b36d8a2dfb7d8f7c3f04612b705dbc6ae0c01b8c">MarkovModel</a>
+</li>
+
+<li>
+<a href="#head-9d73dd3cf7f68c940ee6b662656be91cc20ccdd0">Quantizer</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-09454664079c22cf7bf973a6305288103e87052f">Signal processing</a>
+<ol>
+
+<li>
+<a href="#head-18ddc12fd45814d6c89f6f3fa44552c061904e22">Delay</a>
+</li>
+
+<li>
+<a href="#head-942d8dd7306f915e40e89ca9f958a9b6c769e192">Inverter</a>
+</li>
+
+<li>
+<a href="#head-bac20118d58bb460b929e4a9e2c49418e8fa33c8">Scale</a>
+</li>
+
+<li>
+<a href="#head-9499d95c89dedd6ddf998666a155f6237f5ebc8c">SimpleDifferentiator</a>
+</li>
+
+<li>
+<a href="#head-077e858c44ea8719599fe58fc39f2fcb579c990d">SimpleFilter</a>
+</li>
+
+<li>
+<a href="#head-5316b5b9d43f15c6f6a7d96798af55e4295d620a">SimpleIntegrator</a>
+</li>
+
+<li>
+<a href="#head-e4ab47707d441b6d3f90a805a391f1cb696dd1cb">Sum</a>
+</li>
+
+<li>
+<a href="#head-c577facffb9bdbf4bab3b3b9541d477b972741fa">Matrix</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-9ecf5937830f0cc05f98019d896d0a8b787c04fa">Signal routing</a>
+<ol>
+
+<li>
+<a href="#head-f55db95fc39eab08bdb5720d0cc412e57777f4d6">Combiner</a>
+</li>
+
+<li>
+<a href="#head-d95abbaeefb26c61bbc1a44860c8cd45079e21d6">Switch</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-68a37ab24e0729acbea16b9675f5145908880140">Visualization</a>
+<ol>
+
+<li>
+<a href="#head-50987fd98f5b2501c13fd386c7accc1e3b099047">ContinuousProbability</a>
+</li>
+
+<li>
+<a href="#head-33c32f17230cd19aa4c587ec41044afcf4e6e6ad">SimpleDisplay</a>
+</li>
+
+<li>
+<a href="#head-c6c782ca03a44f3fbdc47d4fe9559f8dda4b6507">TimeGraph</a>
+</li>
+
+<li>
+<a href="#head-1bfb995e79239b5c536b16f47a484bde817d6c6a">TraceView</a>
+</li>
+
+<li>
+<a href="#head-84d78f88a96ef16b9ac2cda980b8f3abc59e87ec">WireframeView</a>
+</li>
+
+<li>
+<a href="#head-d8645260377fbf8fb69cfe71b852f9117ee07dcf">ZeroSignature</a>
+</li>
+
+</ol>
+
+<li>
+<a href="#head-81e7abdfda7b9bd98acc00dff90365cd7f798cab">Sonification</a>
+<ol>
+
+<li>
+<a href="#head-c1ea450361f642b03fd969f7b22d2f1410c58e15">HMMSonification</a>
+</li>
+
+<li>
+<a href="#head-41666417dec6af3551210e43e513e0949d8dc0ce">MIDIOutput</a>
+</li>
+
+<li>
+<a href="#head-f7226c525f018296f0ada6c147c46f49430e8cde">Melody</a>
+</li>
+
+<li>
+<a href="#head-5f9ce5aec9b4bf06c5b7e16218c2666e431f7c3b">StateMIDI</a>
+</li>
+
+<li>
+<a href="#head-bbd4579bf1e1cf02509328f957782e2b8bcaea72">StatePhonetic</a>
+</li>
+
+<li>
+<a href="#head-f079e813442882f1285dfc59706bfae6e4eea2a6">SummativeFeedback</a>
+</li>
+
+<li>
+<a href="#head-dd8789674f7097d4e599a806cdff998e11d7df49">ZeroCross</a>
+</li>
+
+<li>
+<a href="#head-c44eb37c80013a7b803a5d7d8e0912b164270347">ZeroSpeech</a>
+</li>
+
+</ol>
+
+</li>
+
+</ol>
+
+</li>
+
+</ol>
+<p> </p>
+
+<h2 id="head-547af678a7fa319b5ce0fdf2eefad8f5c2991006">Devices</h2>
+
+
+<h3 id="head-893afea6129b7e2fe5f383744340c6a7ca6dd7be">Gesture related</h3>
+
+
+<h4 id="head-1326a304e1a83f60836e6091ef5b5fbdd627fda9">GestureDisplay</h4>
+
+<p>GestureDisplay provides a visual display of incoming recognized gestures. The most probable gesture of the the set of gestures received is displayed, along with its probability, the duration of the gesture, and, if available, the average size of the gesture. The display then immediately starts fading. This distinguishes multiple occurrences of the same gesture in sequence. </p>
+
+<h4 id="head-a5e8b30903e43c347e7356fbdb149c113fa53721">GestureHistogram</h4>
+
+<p>The GestureHistogram device draws a histogram of received gestures, with bar heights based on the gestures’ respective probabilities. The bars are also darkened according to the probability value for each gesture. Like GestureDisplay, the image begins fading after the gesture event. </p>
+
+<h4 id="head-307d23c5508ed498f3301cf1f940764fc8ed8040">GestureLogger</h4>
+
+<p>The GestureLogger device simply records the names and probabilities of incoming gesture events to a file. Only the most probable gesture from each event is written out. The file format is one gesture per line, name followed by probability, separated by a space. </p>
+
+<h4 id="head-f1065d4c35c756615251d8eded79c25607b6f288">NetworkTransfer</h4>
+
+<p>NetworkTransfer receives recognized gestures and sends the name of the gesture to a TCP/IP port. The port must be set up by the user before the gestures can be sent; this is done via the component interface. Note that the device can only send when it is in “server” mode; “client” mode is only intended for testing purposes. </p>
+<hr>
+<p> </p>
+
+<h3 id="head-e9631b7633cbf6a3674bf05cc5ff2733781ba6be">Input devices</h3>
+
+
+<h4 id="head-e61ef2acc73ebf2878987e87a624ca64b72206a1">InterTrax</h4>
+
+<p>The InterTrax generator polls any attached InterTrax II orientation sensor every clock tick, and transmits that output. The generator always has an output signal width of 3, in the order roll, pitch, yaw. This class requires a custom DLL (intertrax.dll?) and the standard <a class="nonexistent" href="/dynwiki/InterTrax">InterTrax</a> DLLs to operate; as such it can only run under Windows systems that have an InterTrax sensor installed. The InterTrax devices automatically unwraps angles so that there is no discontinuity between 180<sup>o</sup> and -180<sup>o</sup> as occurs in the raw device output, ensuring smooth derivatives. </p>
+
+<h4 id="head-d9aa1165e8c161a404d85c66d0475297ae429130">MousePad</h4>
+
+<p>MousePad is the standard device for generating mouse input signals. The MousePad always has an output signal width of two – x followed by y. The MousePad interface brings up a window, and moving the mouse over this window transmits the current position. The position is offset so that the origin is positioned at the centre of the window. Left-clicking causes a <tt>MousePad::SEGMENT</tt> object to be passed forwards; the Quantizer uses this to determine the start and end points of gestures during training. If the right mouse buttons is pressed, a “gesture started” object is passed forward to recognizers that require hard segmentation and similarly a “gesture ended” signal is sent when the mouse is released. When a <a class="nonexistent" href="/dynwiki/MousePad">MousePad</a> receives a gesture that has been passed backward it looks up the points that would have caused that gesture from its buffer and draws a trace of the gesture, which then quickly fades away. </p>
+
+<h4 id="head-1361fcf9a4683c87eb8e3b0fe4e853d6d9c75470">SigGen</h4>
+
+<p>SigGen is generator for producing test signals for testing the operation of devices. It can produce sine, saw, square and triangle waves of varying frequency, amplitude and phase. Parameters are adjustable via the device interface. </p>
+<hr>
+<p> </p>
+
+<h3 id="head-79fd349d975e431a1f72ccda83908f4e9fad5997">Miscellaneous</h3>
+
+
+<h4 id="head-26ec375d777e1aeb2fc80f381c784f79d3fbb22b">Playback</h4>
+
+<p>The Playback generator device reads recorded data from a file and transmits it as signal data. The input data must be in space separated format, in the order &lt; timestamp &gt; &lt; x1 &gt; &lt; x2 &gt; ... &lt; xn &gt; where x1 to xn are the recorded signal values for that timestamp. Each line corresponds to a complete set of signal values at one clock tick. The playback device assumes that the MasterClock for the original recorded signal runs at the same speed as the clock used for playback. Filenames for the Playback device should be of the format 
+</p>
+<pre>
+&lt;name&gt;_&lt;number&gt;.dat</pre>
+<p>where name is the name of the gesture and number is the particular prototype. This is the format that the Recorder device produces. </p>
+
+<h4 id="head-6c1049d18d5821855076de841a3e1618666c4250">Recorder</h4>
+
+<p>Recorder takes any number of signal inputs, and can write the values of the input to a file. Files consist of a timestamp followed by the signal values, as described in the Playback device. The base name of files recorded by the recorder can be set via the interface. Each time a recording starts, a new gesture is recorded in a file consisting of the base name followed by a unique number for that particular instance of the gesture (see the Playback device for more details). The recording can be started and stopped using the MousePad simply by left clicking. The recorder will turn orange while recording. </p>
+
+<h4 id="head-290e5b0517e503cd0f65503e902d9f25a12b12d5">Resynthesizer</h4>
+
+<p>Resynthesizer takes a series of states, as generated by Quantizer, and generates a corresponding continuous signal, approximating the original, pre-quantization, signal as best as possible. The output of a Resynthesizer is always of width 3. </p>
+<hr>
+<p> </p>
+
+<h3 id="head-812cacefdf274dde557186af58de037d1ef43427">Object passing</h3>
+
+
+<h4 id="head-a2cc31bd7ffc390f5b7166dd34c98dc495f52ef6">Asynchronize</h4>
+
+<p>The Asynchronize device takes an input signal of arbitrary width, and wraps it up as an object, and passes forward using the asynchronous model. It can optionally also receive such packaged objects and recreate the original output signal. This functionality is accessed via the device interface. The device allows signals to be “warped” through the device graph, bypassing any signal processing devices in the path until another Asynchronize is used to unwrap the object. </p>
+
+<h4 id="head-74102e3c7a90b8ab7f4b233f899cc2ec22bbc8a5">HetSynchronizer</h4>
+
+<p>HetSynchronizer takes incoming objects, and synchronizes them so that exactly one or zero objects are passed through on every clock tick. A buffer is provided to smooth the flow. The device can synchronize either backwards or forwards objects or both; these properties can be set in the device interface. </p>
+
+<h4 id="head-aefc814f722cb1a3c3811df4c1b0ec2621613775">HetWatcher</h4>
+
+<p>The HetWatcher component provides a simple way of monitoring the progress of heterogenous objects. A split pane showing forward objects on the right, and backwards objects on the left is displayed. The string representations of these objects are added to the appropriate (scrolling) pane. Note that to monitor backwards objects, it is important to place the watcher actually in the signal path so that it receives the objects. </p>
+
+<h3 id="head-04b3634b20b9efe218c329273792602e5447e735">Recognizers</h3>
+
+
+<h4 id="head-97a6b69150459cccf765ff02eaf9b7815515fdd9">BestMatchModel</h4>
+
+<p>BestMatchModel recognizes gestures based on the output of a Quantizer, using a dynamic programming technique to match sequences. The maximum threshold for a gesture to be recognized can be adjusted; only gestures which are within in this number of modifications from a prototype sequence will be considered valid. The probability of gestures is given by a Gaussian function of the computed difference between sequences. The width of this function can be adjusted from the interface; making the curve tighter increases discrimination but reduces robustness. The model by default uses hard segmentation (e.g via the right mouse button on a MousePad), but can be set to use a self-segmenting mode. An FSMModel can also be connected to the recognizer to improve segmentation – in this case both recognizers must be trained together. The output from this device can be connected to any of the devices that handle <a class="nonexistent" href="/dynwiki/MarkovModel">MarkovModel</a> outputs. </p>
+
+<h4 id="head-f4fa255e3f79a121dc2c16c1cb37b0a41fea7b94">FSMModel</h4>
+
+<p>FSMModel recognizes gestures using a finite state machine. It must be connected to a Quantizer device. The tolerance for sequences with slightly modified endings can be adjusted via the width parameter in the interface. A visualization of the recognition progress is provided in the interface window. </p>
+
+<h4 id="head-b36d8a2dfb7d8f7c3f04612b705dbc6ae0c01b8c">MarkovModel</h4>
+
+<p>The MarkovModel module embodies a hidden Markov model gesture recognizer. The various parameters of the model (minimum probability threshold for recognition),  and the number of states for each gesture) can all be adjusted via the interface. A MarkovModel element must be connected to the output of a Quantizer. </p>
+
+<h4 id="head-9d73dd3cf7f68c940ee6b662656be91cc20ccdd0">Quantizer</h4>
+
+<p>The Quantizer device takes between 1 and 3 signal inputs, and quantizes the signal to produce a series of discrete states. The space can be divided up into between 2 and 8 divisions, and each divisions size can be adjusted via the device interface. The quantizer should be used to convert continuous signals into a state form before passing to state based recognizer. The quantizer also records state sequences and packages them up to pass them on to recognizers for training. The recording can be toggled using the left mouse button on the MousePad. After recording, the user will be prompted to enter the name of the gesture just recorded. </p>
+<hr>
+<p> </p>
+
+<h3 id="head-09454664079c22cf7bf973a6305288103e87052f">Signal processing</h3>
+
+
+<h4 id="head-18ddc12fd45814d6c89f6f3fa44552c061904e22">Delay</h4>
+
+<p>Delay processes incoming signals, and delays them by a user-specifiable number of clock ticks. This device is not desynchronizable for obvious reasons. </p>
+
+<h4 id="head-942d8dd7306f915e40e89ca9f958a9b6c769e192">Inverter</h4>
+
+<p>The Inverter signal processing device takes an incoming signal and multiplies all of its values by -1, inverting the signal. </p>
+
+<h4 id="head-bac20118d58bb460b929e4a9e2c49418e8fa33c8">Scale</h4>
+
+<p>The Scale component takes signal of any width, and scales by some number of decibels. Range is from -80dB to +80dB. </p>
+
+<h4 id="head-9499d95c89dedd6ddf998666a155f6237f5ebc8c">SimpleDifferentiator</h4>
+
+<p>The SimpleDifferentiator device approximates the derivative of an incoming signal. The interface allows the number of ticks across which the derivative is taken; higher is less noisy but has a longer lag. </p>
+
+<h4 id="head-077e858c44ea8719599fe58fc39f2fcb579c990d">SimpleFilter</h4>
+
+<p>SimpleFilter applies simple linear smoothing to reduce signal noise, which is especially useful before taking derivatives. The amount of filtering can be adjusted via the interface. </p>
+
+<h4 id="head-5316b5b9d43f15c6f6a7d96798af55e4295d620a">SimpleIntegrator</h4>
+
+<p>The SimpleIntegrator device approximates the integral of an incoming signal. The device interface provides a button to reset the integration to zero. </p>
+
+<h4 id="head-e4ab47707d441b6d3f90a805a391f1cb696dd1cb">Sum</h4>
+
+<p>Sum takes an arbitrary number of signal inputs of varying width, and sums their respective values, producing an output of width equal to the minimum of the input widths. If the inputs are of differing widths, this means that some components will be discarded. </p>
+
+<h4 id="head-c577facffb9bdbf4bab3b3b9541d477b972741fa">Matrix</h4>
+
+<p>Matrix takes an input signal of any width, and multiplies it by a arbitrary matrix of size n  n, n being the input width. The interface allows users to manipulate the matrix, by clicking and dragging on each square of the displayed matrix. Dragging upwards increases the value and downwards decreases it. The current value is displayed in green over the element being modified. The matrix is drawn in a fisheye view to maximize the use of screen space when the input signal is wide. On creation, the matrix will be an identity matrix. Matrices can be loaded and saved in the standard MATLAB format (space separated column entries, line separated rows). The context menu for loading can be obtained by right-clicking over the matrix area. </p>
+<hr>
+<p> </p>
+
+<h3 id="head-9ecf5937830f0cc05f98019d896d0a8b787c04fa">Signal routing</h3>
+
+
+<h4 id="head-f55db95fc39eab08bdb5720d0cc412e57777f4d6">Combiner</h4>
+
+<p>Combiner takes an arbitrary number of input signals of any width, and combines them into one signal, whose width is the sum of the input signal widths. The device is not desynchronizable. </p>
+
+<h4 id="head-d95abbaeefb26c61bbc1a44860c8cd45079e21d6">Switch</h4>
+
+<p>The Switch component takes multiple signal inputs and combines them. It can also enable and disable each of the inputs and their components, selecting particular components to be sent to the output signal. </p>
+
+<h3 id="head-68a37ab24e0729acbea16b9675f5145908880140">Visualization</h3>
+
+
+<h4 id="head-50987fd98f5b2501c13fd386c7accc1e3b099047">ContinuousProbability</h4>
+
+<p>The ContinuousProbability component provides a visualization of the output of the MarkovModel gesture recognizer. The display is by default a histogram, showing the names of gestures with coloured bars for the relative probabilities of each gesture. The colors change from blue to purple as the height of the bar increases. The device can also present a pseudo-3d view of the probabilities, that mirrors the audio output of HMMSonification in speech mode. In this mode, each gesture name is drawn in perspective, and the names move forward and backward in space as their relative probabilities change. The mode can be switched by double-clicking on the component interface. </p>
+
+<h4 id="head-33c32f17230cd19aa4c587ec41044afcf4e6e6ad">SimpleDisplay</h4>
+
+<p>The SimpleDisplay device provides a simple two-dimensional view of the first two components of an input signal, showing a red circle at the (x,y) position given by those co-ordinates. The origin is a the center of the interface window. </p>
+
+<h4 id="head-c6c782ca03a44f3fbdc47d4fe9559f8dda4b6507">TimeGraph</h4>
+
+<p>TimeGraph provides a scrolling graph of an input signal against time. The input may be of any width up to eight, and different components of the signal will be traced in different colours. The view may be vertically zoomed by dragging the mouse up or down. </p>
+
+<h4 id="head-1bfb995e79239b5c536b16f47a484bde817d6c6a">TraceView</h4>
+
+<p>TraceView shows a three-dimensional view of an input signal, with a fading trace of previous values. It can take inputs from widths one to three. The view can be rotated by dragging the mouse. The length of the trace can be adjusted via the slider at the bottom of the interface. The view can be frozen and unfrozen using the “Freeze” button. </p>
+
+<h4 id="head-84d78f88a96ef16b9ac2cda980b8f3abc59e87ec">WireframeView</h4>
+
+<p>WireframeView provides a 3D view which approximates the appearance of the <a class="nonexistent" href="/dynwiki/InterTrax">InterTrax</a> II sensor. It is intended to be connected directly to the output of such a generator, to view the actual current sensed orientation. </p>
+
+<h4 id="head-d8645260377fbf8fb69cfe71b852f9117ee07dcf">ZeroSignature</h4>
+
+<p>The ZeroSignature device provides a visualization of the zero crossings in an input signal, as a scrolling graph. Crossings are marked by coloured bars, with an extension above or below the bar indicating the maximum magnitude of the curve since the last crossing. There are two parallel rows for each input signal; the top is negative-to-positive crossings, and the bottom positive-to-negative. </p>
+<hr>
+<p> </p>
+
+<h3 id="head-81e7abdfda7b9bd98acc00dff90365cd7f798cab">Sonification</h3>
+
+
+<h4 id="head-c1ea450361f642b03fd969f7b22d2f1410c58e15">HMMSonification</h4>
+
+<p>HMMSonification produces sound output when connected to a MarkovModel or a BestMatchModel. The sound may be either MIDI or speech based. The following probability based parameters can be enabled/ disabled: </p>
+<ul>
+<li><p> <strong>Velocity</strong> Modulate volume of MIDI sound, or simulated distance of speech sound. </p>
+</li>
+<li><p> <strong>Panning</strong> Pan MIDI or speech notes to positions corresponding to their position on a GestureHistogram device. </p>
+</li>
+<li><p> <strong>Timbre</strong> Does nothing for speech; causes a different timbre to be chosen for each gesture with MIDI. Timbres </p>
+</li>
+</ul>
+<p>are chosen at random, but are guaranteed to be different. </p>
+<ul>
+<li><p> <strong>Dissonance</strong> Causes different pitches (separated by a semitone) to be used for MIDI output; causes speech to vary in pitch slightly for each different gesture. </p>
+</li>
+</ul>
+<p>If MIDI is used, and either or both of panning and timbre are chosen, the number of sounds that will played is limited to 14. This is a limitation of Java’s MIDI synthesizer. </p>
+
+<h4 id="head-41666417dec6af3551210e43e513e0949d8dc0ce">MIDIOutput</h4>
+
+<p>MIDIOutput maps incoming signals to various parameters of a MIDI synthesizer. The device produces a constant stream of notes as long as it is extant. The input parameters can be mapped and scaled appropriately via the interface. </p>
+
+<h4 id="head-f7226c525f018296f0ada6c147c46f49430e8cde">Melody</h4>
+
+<p>The Melody device produces a random series of notes, with varying volume, pitch and timbre. It is intended to show the use of the evolutionary approach to designing feedback; it can be evolved using the standard evolutionary interface. </p>
+
+<h4 id="head-5f9ce5aec9b4bf06c5b7e16218c2666e431f7c3b">StateMIDI</h4>
+
+<p>StateMIDI produces an ascending scale as recognition progresses when connected to an FSMModel. It also produces a “gesture failed” and “gesture recognized” sound. Optionally, the Shepard tones or a predefined melody can be used instead of a scale. The melodies are in Earwig format, and can be found in the “lib/melodies.ewg” directory of the file system if the JAR has been extracted. </p>
+
+<h4 id="head-bbd4579bf1e1cf02509328f957782e2b8bcaea72">StatePhonetic</h4>
+
+<p>StatePhonetic produces phonemes sequences when connected to an FSMModel. The sequences produced can be adjusted via the device interface. </p>
+
+<h4 id="head-f079e813442882f1285dfc59706bfae6e4eea2a6">SummativeFeedback</h4>
+
+<p>The SummativeFeedback device produces feedback when a gesture has been recognized. A mapping can be set up from each gesture name to a specific sound. Sounds can be Earwig commands, speech or .WAV samples. </p>
+
+<h4 id="head-dd8789674f7097d4e599a806cdff998e11d7df49">ZeroCross</h4>
+
+<p>ZeroCross produces audio output when a zero crossing occurs on the input signal. It can take signals up to width 6. The timbre used for the signal can be adjusted via the device interface. </p>
+
+<h4 id="head-c44eb37c80013a7b803a5d7d8e0912b164270347">ZeroSpeech</h4>
+
+<p>ZeroSpeech sonifies an input signal in a similar way to ZeroCross, but uses phonemes rather than musical sounds. The phonemes used can be changed using the interface. </p>
+<a id="bottom"></a>
+
+</div>
+<div id="pagebottom"></div>
+</div> <!-- end page -->
+
+
+<SCRIPT SRC="http://www.dcs.gla.ac.uk/~jhw/wiki/tailscripts.js" LANGUAGE="JavaScript"></SCRIPT></body>
+</html>
+

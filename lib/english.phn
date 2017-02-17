@@ -1,0 +1,751 @@
+ |A| |ey|
+ |B| |b/iy|
+ |C| |ss/iy|
+ |D| |d/iy|
+ |E| |iy|
+ |F| |eh/f|
+ |G| |jh/iy|
+ |H| |ey/t/ch|
+ |I| |ay|
+ |J| |j/ey|
+ |K| |k/ey|
+ |L| |eh/ll|
+ |M| |eh/m|
+ |N| |eh/n|
+ |O| |ow|
+ |P| |p/iy/|
+ |Q| |k/y/uw/|
+ |R| |ah/r|
+ |S| |eh/s|
+ |T| |t/iy/|
+ |U| |y/uw/|
+ |V| |v/iy/|
+ |W| |d/ax/b/l/y/uw/|
+ |X| |eh/k/s|
+ |Y| |w/ay/|
+ |Z| |z/eh/d/|
+ |C|*|kk1|
+ |B|*|bb1|
+ |NO| |nn2/OW|
+ |N|*|nn2|
+.|OO|*|uw2|
+ |R|*|rr2|
+*|CH| |ch2|
+*|space|*|s/p/ey/s/|
+*|V| |vv2|
+*|VE| |vv2|
+*|SION| |sh/ao/nn1|
+ |THE| |th/ih|
+*|ER| |yr|
+*|AR| |yr|
+*|AIR| |ey/xr|
+*|LE| |el|
+*|OR|#|or|
+*|AR|^|ar|
+*|ING| |ING|
+*|ING|#|ING/GG3|
+ |G|#|GG2|
+ |GO|^|GG1|
+*| |*|P4/P3/|
+*|-|*|P4/|
+.|'S|*|z/|
+#:.E|'S|*|z/|
+#|'S|*|z/|
+*|'|*|P1/|
+*|;|*|P5/|
+*|:|*|P5/|
+*|,|*|P5/|
+*|.|#|@|
+*|.|^|@|
+*|.|*|P5/P5/P4/|
+*|?|*|P5/P5/P4/|
+*|!|*|P5/P5/P4/|
+ |A| |EH/EY/|
+*|AHEAD|*|AX/h/EH/EH/D1/|
+*|APROPOS|*|AE/p/r/OW/p/OW/|
+*|ASS|H|AE/AE/s/s/|
+*|ALLEGE|*|AX/l/EH/d/j/|
+*|AGAIN|*|AX/G3/EH/EH/n/|
+ |ABLE|*|EY/h/b/AX/l/|
+ |ABOVE| |AX/b/AX/AX/v/h/|
+ |ACRO|.|AE/h/k/r/OW/|
+ |ARE| |AA/ER/|
+ |ALLY| |AE/AE/l/AY/|
+*|ATOMIC|*|AX/t/AA/m/P1/IH/k/|
+*|ARCH|#V|AX/AX/r/P1/k/IH/|
+*|ARCH|#.|AX/AX/r/CH/IH/|
+*|ARCH|#^|AX/AX/r/k/P1/IH/|
+*|ARGUE|*|AA/ER/g/y/UW/|
+ |ABB|*|AX/AX/b/|
+ |AB|*|AE/AE/B2/P2/|
+ |AN|#|AE/n/|
+^|AN|^|AE/n/|
+ |ALLO|T|AE/l/AA/|
+ |ALLO|W|AE/l/AW/|
+ |ALLO|*|AE/l/OW/|
+ |AR|O|AX/ER/|
+#:|ALLY|*|P1/AX/l/IY/|
+^|ABLE|*|P1/EY/h/b/AX/l/|
+*|ABLE|*|P1/AX/h/b/AX/l/|
+^|ANCE|*|P1/AE/n/s/|
+*|AIR|*|EY/XR/|
+*|AIC| |EY/IH/k/|
+#:|ALS| |AX/l/z/|
+*|ALK|*|AO/AO/k/|
+*|ARR|*|AA/r/|
+*|ANG|+|EY/n/j/|
+ :|ANY|*|EH/n/IY/|
+*|ARY| |P1/AX/ER/IY/|
+^|AS|#|EY/s/|
+#:|AL| |AX/l/|
+*|AL|^|AO/l/|
+ |AL|#|EH/EY/l/|
+#:|AG|E|IH/j/|
+*|AI|*|EH/EY/|
+*|AY|*|EH/EY/|
+*|AU|*|AO/AO/|
+*|AW| |AO/AO/|
+*|AW|^|AO/AO/|
+:|AE|*|EH/|
+*|A|TION|EY/|
+C|A|BL|EH/EY/|
+C|A|B#|AE/AE/|
+C|A|PAB|EH/EY/|
+C|A|P#|AE/AE/|
+C|A|T#^|AE/AE/|
+^^^|A|*|EY/|
+^.|A|^E|EY/|
+^.|A|^I|EY/|
+^^|A|*|AE/|
+^|A|^##|EY/|
+^|A|^#|EY/|
+^|A|^#|EH/EY/|
+*|A|^%|EY/|
+#|A| |AO/|
+*|A|WA|AX/|
+*|A| |AX/|
+*|A|^+#|EY/|
+*|A|^+:#|AE/|
+ :|A|^+ |EY/|
+*|A|*|AE/|
+B|B|*|@|
+*|BI|CYCLE|b/AY/|
+*|BI|CYCLE|b/AY/|
+*|BBQ|*|b/AX/AX/r/b/AX/K1/y/UW/|
+*|BARBEQUE|*|b/AX/AX/r/b/AX/K1/y/UW/|
+*|BARBAQUE|*|b/AX/AX/r/b/AX/K1/y/UW/|
+*|BARGAIN|*|b/AO/r/g/EH/n/|
+*|BAGEL|*|b/EY/g/EH/l/|
+*|BEING|*|b/IY/IH/NG/|
+*|BOMB|*|b/AA/AA/m/|
+ |BOTH| |b/OW/TH/|
+*|BUIL|*|b/IH/l/|
+ |BUS|Y|b/IH/z/|
+ |BUS|#|b/IH/z/|
+*|BYE|*|b/AO/AY/|
+*|BEAR| |b/EY/ER/|
+*|BEAR|%|b/EY/ER/|
+*|BEAR|S|b/EY/ER/|
+*|BEAR|#|b/EY/ER/|
+*|BAN|ISH|b/AE/AE/n/|
+ |BE|^#|b/IH/|
+ |BY|*|b/AO/AY/|
+Y|BE| |b/IY/|
+ |B|#|b/|
+*|B| |B2/|
+*|B|#|B2/|
+*|B|L|B2/|
+*|B|R|B2/|
+*|B|*|b/|
+*|CHINESE|*|CH/AY/n/IY/s/|
+*|COUNTRY|*|k/AX/AX/n/t/r/IY/|
+*|CHRIST| |K2/r/AY/s/t/|
+*|CHASSIS|*|CH/AX/AX/s/IY/|
+*|CLOSET|*|K2/l/AO/AO/z/EH/t/|
+*|CHINA|*|CH/AY/n/AX/|
+ |CAFE| |k/AE/f/AE/EY/|
+*|CELE|*|s/EH/l/P1/EH/|
+*|CYCLE|*|s/AY/K2/UH/l/|
+*|CHRON|*|k/r/AO/n/|
+*|CREA|T|K2/r/IY/EY/|
+ |CRY| |K2/r/IY/|
+ |CHRY|*|K2/r/AO/AY/|
+ |CRY|#|K2/r/AO/AY/|
+ |CAVEAT|:|k/AE/v/IY/AE/t/|
+^|CUIT|*|k/IH/t/|
+*|CHAIC|*|k/EY/IH/k/|
+*|CATION|*|k/EY/SH/AX/n/|
+ |CH|ARACT|k/|
+ |CH|^|k/|
+^E|CH|*|k/|
+*|CH|*|CH/|
+ S|CI|#|s/AY/|
+*|CI|A|SH/|
+*|CI|O|SH/|
+*|CI|EN|SH/|
+*|C|+|s/|
+*|CK|*|K1/|
+*|COM|%|k/AH/m/|
+*|C|U|K2/|
+*|C|O|K2/|
+*|C|A^^|K2/|
+*|C|O^^|K2/|
+*|C|L|K2/|
+*|C|R|K2/|
+*|C|A|k/|
+*|C|E|k/|
+*|C|I|k/|
+*|C| |K1/|
+*|C|*|k/|
+*|DEAD|*|d/EH/EH/D1/|
+ |DOGGED|*|d/AO/g/P1/EH/D1/|
+#:|DED| |d/IH/D1/|
+ |DIG|*|d/IH/IH/g/|
+ |DRY| |d/r/AO/AY/|
+ |DRY|#|d/r/AO/AY/|
+ |DE|^#|d/IH/|
+ |DO| |d/UW/|
+ |DOES|*|d/AH/z/|
+ |DOING|*|d/UW/IH/NG/|
+ |DOW|*|d/AW/|
+*|DU|A|j/UW/|
+*|DYNA|*|d/AY/n/AX/P1/|
+*|DYN|#|d/AY/n/P1/|
+D|D|*|@|
+*|D| |D1/|
+ |D|*|d/|
+*|D|*|d/|
+ |EYE|*|AA/AY/|
+*|ERED| |ER/D1/|
+ |EGO|*|IY/g/OW/|
+ |ERR|*|EH/EH/r/|
+^|ERR|*|EH/EH/r/|
+*|EV|ER|EH/EH/v/h/|
+*|E|NESS|@|
+*|ERI|#|IY/XR/IY/|
+*|ERI|*|EH/r/IH/|
+#:|ER|#|ER/|
+*|ER|#|EH/EH/r/|
+*|ER|*|ER/|
+ |EVIL|*|IY/v/EH/l/|
+ |EVEN|*|IY/v/EH/n/|
+M|EDIA|*|IY/d/IY/AX/|
+*|ECIA|*|IY/SH/IY/EY/|
+:|ELEG|*|EH/l/EH/g/|
+#:|E|W|@|
+T|EW|*|UW/|
+S|EW|*|UW/|
+R|EW|*|UW/|
+D|EW|*|UW/|
+L|EW|*|UW/|
+Z|EW|*|UW/|
+N|EW|*|UW/|
+J|EW|*|UW/|
+TH|EW|*|UW/|
+CH|EW|*|UW/|
+SH|EW|*|UW/|
+*|EW|*|y/UW/|
+*|E|O|IY/|
+#:S|ES| |IH/z/|
+#:C|ES| |IH/z/|
+#:G|ES| |IH/z/|
+#:Z|ES| |IH/z/|
+#:X|ES| |IH/z/|
+#:J|ES| |IH/z/|
+#:CH|ES| |IH/z/|
+#:SH|ES| |IH/z/|
+#:|E|S |@|
+#:|ELY| |l/IY/|
+#:|EMENT|*|P1/m/EH/n/t/|
+*|EFUL|*|P1/f/UH/l/|
+*|EE|*|IY/|
+*|EARN|*|ER/n/|
+ |EAR|^|ER/|
+K.|EAD|*|IY/d/|
+^.|EAD|*|EH/d/|
+D|EAD|*|EH/d/|
+*|EAD|*|IY/d/|
+#:|EA| |IY/AX/|
+#:|EA|S|IY/AX/|
+*|EA|SU|EH/|
+*|EA|*|IY/|
+*|EIGH|*|EY/|
+L|EI|*|IY/|
+.|EI|*|EY/|
+*|EI|N|AY/|
+*|EI|*|IY/|
+*|EY|*|IY/|
+*|EU|*|y/UW/|
+#:|E|D |@|
+#S|E|^|@|
+:|E|X|EH/EH/|
+#:|E| |@|
++:|E| |@|
+':^|E| |@|
+:|EQU|*|IY/k/w/|
+DG|E|*|@|
+DH|E|*|IY/|
+ :|E| |IY/|
+#|ED| |D1/|
+*|E|*|EH/|
+*|FNORD|*|f/n/AO/OR/D1/|
+*|FOUR|*|f/OW/r/|
+*|FUL|*|P1/f/UH/l/|
+ |FLY|*|f/l/AO/AY/|
+.|FLY|*|f/l/AO/AY/|
+*|FIXED|*|f/IH/k/s/t/|
+*|FIVE|*|f/AO/AY/v/|
+*|FOOT|*|f/UH/UH/t/|
+*|F|*|f/|
+*|GADGET|*|G2/AE/AE/D1/P2/j/EH/EH/t/|
+*|GOD|*|G3/AA/AA/D1/|
+*|GET|*|G3/EH/EH/t/|
+*|GEN|^|j/EH/EH/n/|
+*|GEN|#^|j/EH/EH/n/|
+*|GEN| |j/EH/EH/n/|
+*|GIV|*|G2/IH/IH/v/h/|
+SU|GGES|*|g/j/EH/s/|
+*|GREAT|*|G2/r/EY/t/|
+*|GOOD|*|G2/UH/UH/D1/|
+*|GUE|*|G3/|
+D|G|*|j/|
+##|G|*|g/|
+*|G|+|j/|
+*|GG|*|G3/P1/|
+CAMPAI|G|N|@|
+ARRAI|G|N|@|
+ALI|G|N|@|
+BENI|G|N|@|
+ARRAI|G|N|@|
+*|G|A|g/|
+*|G|E|g/|
+*|G|I|g/|
+*|G|Y|g/|
+*|G|O|G2/|
+*|G|U|G2/|
+*|G|L|G2/|
+*|G|R|G2/|
+*|G| |G3/|
+N|G|*|G3/|
+*|G|*|G3/|
+*|HONOR|*|AO/n/ER/|
+*|HEARD|*|h/ER/D1/|
+*|HEIGHT|*|h/AY/t/|
+*|HONEST|*|AO/n/EH/s/t/|
+*|HOOD|*|h/UH/UH/D1/|
+AB|HOR|*|OW/ER/|
+*|HEAVY|*|h/AE/v/IY/|
+*|HEART|*|h/AA/r/t/|
+*|HALF|*|h/AE/AE/f/|
+*|HIVE|*|h/AA/AY/v/|
+*|HEAVI|:#|h/AE/v/IY/|
+ |HAV|*|h/AE/v/h/|
+*|HA| |h/AA/AA/|
+ |HI| |h/AA/AY/|
+*|HE|T|h/AE/|
+*|HE|X|h/AE/|
+*|HY|*|h/AA/AY/|
+ |HANG|*|h/AE/NG/|
+ |HERE|*|h/IY/XR/|
+ |HOUR|*|AW/ER/|
+*|HOW|*|h/AW/|
+*|H|ONOR|@|
+*|H|ONEST|@|
+*|H|#|h/|
+*|H|*|@|
+ |I| |AO/AY/|
+ |II| |t/UW/|
+ |III| |TH/r/IY/|
+ |INTRIGU|#|IH/n/t/r/IY/g/|
+ |ISO|*|AY/s/OW/|
+*|ITY| |P1/IH/t/IY/|
+ |IN|*|IH/IH/n/|
+ |I|O|AY/|
+*|IFY|*|P1/IH/f/AY/|
+*|IGH|*|AY/|
+*|ILD|*|AY/l/D1/|
+*|IGN| |AY/n/|
+*|IN|D|AY/n/|
+*|IER|*|IY/ER/|
+*|IDEA|*|AY/d/IY/AX/|
+ |IDL|*|AY/d/AX/l/YY/Y|
+*|IRON|*|AA/AY/ER/n/|
+*|IBLE|*|IH/B2/l/|
+R|IEND|*|AE/n/D1/|
+*|IEND|*|IY/n/D1/|
+#:R|IED|*|IY/D1/|
+*|IED| |AY/D1/|
+*|IEN|*|IY/EH/n/|
+*|ION|*|y/AX/n/|
+CH|INE|*|IY/n/|
+ENT|ICE|*|AY/s/|
+*|ICE|*|IH/s/|
+*|IEC|%|IY/s/s/|
+#.|IES| |IY/z/|
+*|IES| |AY/z/|
+*|IE|T|AY/EH/|
+*|IE|^|IY/|
+*|I|CATION|IH/|
+*|ING|*|IH/NG/|
+*|IGN|^|AA/AY/n/|
+*|IGN|%|AA/AY/n/|
+*|IQUE|*|IY/k/|
+*|ISH|*|IH/SH/|
+ |IR|*|YR/|
+*|IR|#|AA/AY/r/|
+*|IR|*|ER/|
+*|IZ|%|AA/AY/z/|
+*|IS|%|AA/AY/z/|
+^CH|I|.|AA/AY/|
+^CH|I|^|IH/|
+ #^|I|^|IH/|
+^#^|I|^|IH/|
+^#^|I|#|IY/|
+.|I| |AO/AY/|
+#^|I|^#|AY/|
+*|I|GUE|IY/|
+.|I|VE|AA/AY/|
+*|I|VE|IH/|
+*|I|^+:#|IH/|
+.|I|O|AO/AY/|
+#^|I|^ |IH/|
+#^|I|^#^|IH/|
+#^|I|^|IY/|
+^|I|^#|AY/|
+^|I|O|IY/|
+.|I|A|AY/|
+*|I|A|IY/|
+ :|I|%|AY/|
+*|I|%|IY/|
+.|I|.#|AA/AY/XX/|
+*|I|D%|AH/AY/|
++^|I|^+|AH/AY/|
+*|I|T%|AH/AY/|
+#:^|I|^+|AH/AY/|
+*|I|^+|AH/AY/|
+.|I|.|IH/IH/|
+*|I|NUS|AA/AY/|
+*|I|*|IH/|
+*|JAPANESE|*|j/AX/p/AE/AE/n/IY/s/s/|
+*|JAPAN|*|j/AX/p/AE/AE/n/|
+*|JULY|*|j/UW/l/AE/AY/|
+*|JESUS|*|j/IY/z/AX/s/|
+*|J|*|j/|
+ |K|N|@|
+*|K|U|K2/|
+*|K|O|K2/|
+*|K|A^^|K2/|
+*|K|O^^|K2/|
+*|K|L|K2/|
+*|K|R|K2/|
+*|K|A|k/|
+*|K|E|k/|
+*|K|I|k/|
+*|K| |K1/|
+*|K|*|k/|
+L|L|*|@|
+ |LION|*|l/AY/AX/n/|
+*|LEAD|*|l/IY/D1/|
+*|LEVEL|*|l/EH/v/AX/l/|
+*|LIBER|*|l/IH/b/ER/|
+ |LOSE|*|l/UW/z/|
+ |LIV|*|l/IH/v/|
+^|LIV|*|l/AY/v/|
+#|LIV|*|l/IH/v/|
+*|LIV|*|l/AY/v/|
+*|LO|C#|l/OW/|
+#:^|L|%|l/|
+*|LY| |P1/l/IY/|
+*|L|*|l/|
+M|M|*|@|
+ |MY| |m/AY/|
+ |MARY| |m/EY/XR/IY/|
+#|MARY| |P1/m/EY/XR/IY/|
+*|MICRO|*|m/AY/k/r/OW/|
+*|MONO|.|m/AA/n/OW/|
+*|MONO|^|m/AA/n/AA/|
+*|MON|#|m/AA/AA/n/|
+*|MOS|*|m/OW/s/|
+*|MOV|*|m/UW/v/h/|
+TH|M|#|m/|
+TH|M| |IH/m/|
+*|M|*|m/|
+N|N|*|@|
+ |NOW| |n/AW/|
+#|NG|+|n/j/|
+*|NG|R|NG/g/|
+*|NG|#|NG/g/|
+*|NGL|%|NG/g/AX/l/|
+*|NG|*|NG/|
+*|NK|*|NG/k/|
+ |NONE|*|N2/AH/n/|
+ |NON|:|N2/AA/AA/n/|
+*|NUC|L|N2/U1/k/|
+R|N|*|n/|
+*|N|#R|n/|
+*|N|O|N2/|
+*|N|*|n/|
+ |ONLY|*|OW/n/l/IY/|
+ |ONCE|*|w/AH/n/s/|
+ |OH| |OW/|
+ |OK| |OW/P3/k/EH/EY/|
+ |OKAY| |OW/P3/k/EH/EY/|
+ |OHIO| |OW/h/AY/OW/|
+ |OVER|*|OW/v/ER/|
+*|OTHER|*|AH/DH/ER/|
+*|OHM| |OW/m/|
+*|ORIGIN|*|OR/IH/d/j/IH/n/|
+*|OROUGH|*|ER/OW/|
+*|OUGHT|*|AO/t/|
+*|OCCU|P|AA/k/P1/U1/|
+*|OUGH|*|AH/f/|
+*|ORE|*|OW/r/|
+#:|ORS| |ER/z/|
+*|ORR|*|AO/r/|
+D|ONE|*|AH/n/|
+^Y|ONE|*|w/AH/n/|
+ |ONE|*|w/AH/n/|
+*|OUR| |AW/r/|
+*|OUR|^|OR/|
+*|OUR|*|AO/AW/r/|
+T|OWN|*|AW/n/|
+BR|OWN|*|AW/n/|
+FR|OWN|*|AW/n/|
+*|OLO|*|AO/AA/l/AO/|
+*|OULD|*|UH/D1/|
+*|OUP|*|UW/p/|
+*|OING|*|OW/IH/NG/|
+*|OMB|%|OW/m/|
+*|OOR|*|AO/r/|
+*|OOK|*|UH/k/|
+*|ON'T|*|OW/n/t/|
+*|OSS| |AO/s/|
+*|OF| |AX/AX/v/h/|
+^|OR| |AO/AO/r/|
+#:|OR| |ER/|
+*|OR|*|AO/AO/r/|
+*|OW| |OW/|
+*|OW|#|OW/|
+*|OW|.|OW/|
+*|OW|*|AW/|
+ L|OV|*|AH/v/h/|
+ D|OV|*|AH/v/h/|
+GL|OV|*|AH/v/h/|
+^|OV|*|OW/v/h/|
+*|OV|*|AH/v/h/|
+*|OL|D|OW/l/|
+ |OU|*|AW/|
+H|OU|S#|AW/|
+AC|OU|S|UW/|
+^|OU|^L|AH/|
+*|OU|*|AW/|
+*|OA|*|OW/|
+*|OY|*|OY/|
+*|OI|*|OY/|
+I|ON|*|AX/AX/n/|
+#:|ON| |AX/AX/n/|
+#^|ON|*|AX/AX/n/|
+*|OF|^|AO/f/|
+#:^|OM|*|AH/m/|
+*|OO|*|UW/|
+*|OUS|*|AX/s/|
+^#^|O|^|AX/|
+^#^|O|#|OW/|
+#|O|.|OW/|
+^|O|^#^|AX/AX/|
+^|O|^#|OW/|
+*|O|^%|OW/|
+*|O|^EN|OW/|
+*|O|^I#|OW/|
+*|O|E|OW/|
+*|O| |OW/|
+C|O|N|AA/|
+*|O|NG|AO/|
+ :^|O|N|AX/|
+*|O|ST |OW/|
+*|O|*|AO/|
+ |PI| |p/AY/|
+*|PUT| |p/UH/t/|
+*|PROVE|*|p/r/UW/v/|
+*|PLY|*|p/l/AY/|
+P|P|*|@|
+*|PHE| |f/IY/|
+*|PHE|S |f/IY/|
+*|PEOP|*|p/IY/p/|
+*|POW|*|p/AW/|
+*|PH|*|f/|
+*|P|*|p/|
+*|QUAR|*|K2/w/AO/r/|
+*|QUE| |K1/|
+*|QUE|S|K1/|
+*|QU|*|K2/w/|
+*|Q|*|k/|
+ |RUGGED|*|r/AX/g/P1/EH/D1/|
+ |RUSSIA|*|r/AX/SH/P1/AX/|
+ |REALITY|*|r/IY/AE/l/IH/t/IY/|
+*|RADIO|*|r/EY/d/IY/OW/|
+*|RADIC|*|r/AE/d/IH/k/|
+ |RE|^#|r/IY/|
+ |RE|^^#|r/IY/|
+ |RE|^^+|r/IY/|
+^|R|*|R1/|
+*|R|*|r/|
+*|SAID|*|s/EH/D1/|
+*|SECRET|*|s/IY/k/r/EH/t/|
+ |SLY|*|s/l/AY/|
+ |SATUR|*|s/AE/AE/t/R2/|
+*|SOME|*|s/AH/m/|
+*|S|HON#^|s/|
+*|SH|*|SH/|
+#|SUR|#|ZH/ER/|
+*|SUR|#|SH/ER/|
+#|SU|#|ZH/UW/|
+#|SSU|#|SH/UW/|
+#|SED| |z/D1/|
+#|SION|*|P1/ZH/AX/n/|
+^|SION|*|P1/SH/AX/n/|
+S|SIAN|*|s/s/IY/AX/n/|
+#|SIAN|*|P1/ZH/IY/AX/n/|
+*|SIAN|*|P1/ZH/AX/n/|
+ |SCH|*|s/k/|
+#|SM|*|z/m/|
+#|SN|'|z/AX/n/|
+#|S|#|z/|
+.|S| |z/|
+#:.E|S| |z/|
+#:^##|S| |z/|
+#:^#|S| |s/|
+U|S| |s/|
+ :#|S| |z/|
+*|S|S|@|
+*|S|C+|@|
+*|S|*|s/|
+ |THE| |DT/IY/|
+ |THIS| |DH/IH/IH/s/s/|
+ |THAN| |DH/AE/AE/n/|
+ |THEM| |DH/EH/EH/m/|
+ |TILDE| |t/IH/l/d/AX/|
+ |TUESDAY| |t/UW/z/P2/d/EY/|
+ |TRY|*|t/r/AY/|
+ |THY|*|DH/AY/|
+ |THEY|*|DH/EH/EY/|
+ |THERE|*|DH/EH/XR/|
+ |THEN|*|DH/EH/EH/n/|
+ |THUS|*|DH/AH/AH/s/|
+*|THAT| |DH/AE/t/|
+*|TRULY|*|t/r/UW/l/IY/|
+*|TRUTH|*|t/r/UW/TH/|
+*|THEIR|*|DH/EH/IY/XR/|
+*|THESE| |DH/IY/z/|
+*|THROUGH|*|TH/r/UW/|
+*|THOSE|*|DH/OW/z/|
+*|THOUGH| |DH/OW/|
+*|TION|*|P1/SH/AX/n/|
+*|TIAN|*|P1/SH/AX/n/|
+*|TIEN|*|SH/AX/n/|
+*|TEAR| |t/EY/ER/|
+*|TEAR|%|t/EY/ER/|
+*|TEAR|#|t/EY/ER/|
+#|T|IA|SH/|
+.|T|IA|SH/|
+*|THER|*|DH/P2/ER/|
+*|TO| |t/UW/|
+#|TH|*|TH/|
+*|TH|*|TH/|
+#:|TED| |P1/t/IH/D1/|
+*|TUR|#|P1/CH/ER/|
+*|TUR|^|t/ER/|
+*|TU|A|CH/UW/|
+ |TWO|*|t/UW/|
+T|T|*|@|
+*|T|S|T1/|
+*|T|*|t/|
+ |UN| |y/UW/P3/AE/n/|
+ |USA| |y/UW/P3/AE/s/s/P3/EH/EY/|
+ |USSR| |y/UW/P3/AE/s/s/P3/AE/s/s/P3/AA/AR/|
+ |U| |y/U2/|
+ |UN|I|y/UW/n/|
+ |UN|:|AH/n/P1/|
+ |UN|*|AH/n/|
+ |UPON|*|AX/p/AO/n/|
+D|UP|*|UW/p/|
+T|UR|#|UH/r/|
+S|UR|#|UH/r/|
+R|UR|#|UH/r/|
+D|UR|#|UH/r/|
+L|UR|#|UH/r/|
+Z|UR|#|UH/r/|
+N|UR|#|UH/r/|
+J|UR|#|UH/r/|
+TH|UR|#|UH/r/|
+CH|UR|#|UH/r/|
+SH|UR|#|UH/r/|
+ARG|U|#|y/UW/|
+*|UR|#|y/UH/r/|
+*|UR|*|ER/|
+*|UY|*|AA/AY/|
+*|U|^#^|y/UW/|
+*|U|^ |AH/|
+*|U|%|UW/|
+ G|U|#|@|
+G|U|%|@|
+G|U|#|w/|
+#N|U|*|y/UW/|
+#M|U|*|y/UW/|
+F|U|^^|UH/|
+B|U|^^|UH/|
+^|U|^E|y/UW/|
+^|U|^|AX/|
+*|U|^^|AH/|
+T|U|*|UW/|
+S|U|*|UW/|
+R|U|*|UW/|
+D|U|*|UW/|
+L|U|*|UW/|
+Z|U|*|UW/|
+N|U|*|UW/|
+J|U|*|UW/|
+TH|U|*|UW/|
+CH|U|*|UW/|
+SH|U|*|UW/|
+*|U|*|y/UW/|
+*|VIEW|*|v/y/UW/|
+ |VERY| |v/EH/ER/P1/IY/|
+*|VARY|*|v/EY/P1/r/IY/|
+*|V|*|v/|
+ |WERE|*|w/ER/|
+*|WEIGH|*|w/EH/EY/|
+*|WOOD|*|w/UH/UH/D1/|
+*|WARY|*|w/EH/ER/P1/IY/|
+*|WHERE|*|w/EH/r/|
+*|WHAT|*|w/AA/AA/t/|
+*|WANT|*|w/AA/AA/n/t/|
+*|WHOL|*|h/OW/l/|
+*|WHO|*|h/UW/|
+*|WHY|*|w/AO/AY/|
+*|WEAR|*|w/EY/ER/|
+*|WEA|TH|w/EH/|
+*|WEA|L|w/EH/|
+*|WEA|P|w/EH/|
+*|WA|S|w/AA/|
+*|WA|T|w/AA/|
+*|WH|*|WH/|
+*|WAR| |w/AO/r/|
+BE|WILDER|*|w/IH/l/d/ER/|
+ |WILDER|NESS|w/IH/l/d/ER/|
+ |WILD|ERNESS|w/IH/l/d/|
+ |WILY| |w/AY/l/IY/|
+*|WOR|^|w/ER/|
+*|WR|*|r/|
+*|W|*|w/|
+*|X|*|k/s/|
+*|YOUNG|*|y/AH/NG/|
+ |YOUR|*|y/UW2/ER/|
+ |YOU|*|y/UW2/|
+ |YES|*|y/EH/s/|
+*|YTE|*|AY/t/P1/|
+*|Y| |IY/|
+*|Y|*|IH/|
+*|Y|*|IH/|
+Z|Z|*|@|
+*|Z|*|z/|
